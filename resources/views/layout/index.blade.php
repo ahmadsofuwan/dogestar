@@ -12,7 +12,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>XwDoge</title>
+    <title>WDogestar</title>
     <link rel="stylesheet" href="{{ asset('buzzle') }}/css/framework7.bundle.css">
     <link rel="stylesheet" href="{{ asset('buzzle') }}/css/style.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -25,7 +25,7 @@
 
             @include('layout.menu')
 
-            <div class="tabs bg-gray-800">
+            <div class="tabs bg-black">
                 <div id="tab-home" class="tab tab-home tab-active">
                     <!-- ===== TAB HOME ===== -->
                     <div class="pb-5">

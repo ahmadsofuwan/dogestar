@@ -1,155 +1,105 @@
 @extends('layout.index')
 @section('content')
 
-
+<div class="w-1/2 mx-auto ">
+    <img src="{{ asset('img/logo.png') }}" alt="">
+</div>
+<div class="flex justify-center items-center text-white font-black">
+    <span>Power By </span>
+    <img src="{{ asset('img/doge.png') }}" alt="" class="w-5 mx-1">
+    <span>Doge Chain (DRC20)</span>
+</div>
 <div class="mt-3">
     <div class="text-center flex justify-center bg-gray-600 p-2 w-fit mx-auto rounded-xl">
         <span class="text-yellow-600">
-            {{ substr($users->wallet, 0, 4) . '....' . substr($users->wallet, -4) }}
+            {{ substr($users->wallet, 0, 10) . '....' . substr($users->wallet, -10) }}
         </span>
         <button class="btn-cpy" data-link="{{ $users->wallet }}">
             <img src="{{ asset('img/copy.png') }}" alt="" class="w-5 ml-2">
         </button>
     </div>
 </div>
-<div class=" w-fit mx-auto my-5">
-    <div class="text-4xl font-bold">
-        <span>$ {{ number_format($total) }}</span>
-    </div>
+<div class="flex justify-center items-center mt-3 ">
+    <span class="text-white text-xl font-black"> $ {{ number_format($total, 2) }}</span>
+</div>
+<div class="w-fit mx-auto my-5 grid grid-cols-2 gap-4 ">
+    <button class="bg-red-500 text-white px-4 py-2 rounded-xl w-full">
+        Withdraw
+    </button>
+    <button class="bg-blue-500 text-white px-4 py-2 rounded-xl w-full">
+        Transfer
+    </button>
+    <button class="bg-purple-500 text-white px-4 py-2 rounded-xl w-full">
+        Swap
+    </button>
+    <button class="bg-yellow-500 text-white px-4 py-2 rounded-xl w-full">
+        History
+    </button>
 </div>
 
-<div class="grid grid-cols-3 gap-4 mx-3 mt-4">
-
-    <div>
-        <button class="bg-gray-600 w-full p-2 rounded-xl" id="send">
-            <img src="{{ asset('img/paper-plane.png') }}" alt="" class="w-10 mx-auto">
-            <div class="text-blue-300">Transfer</div>
-        </button>
-    </div>
-
-    <div>
-        <button class="bg-gray-600 w-full p-2 rounded-xl" id="deposit">
-            <img src="{{ asset('img/doge.png') }}" alt="" class="w-10 mx-auto">
-            <div class="text-blue-300">Deposit</div>
-        </button>
-    </div>
-
-    <div>
-        <button class="bg-gray-600 w-full p-2 rounded-xl" id="hystori">
-            <img src="{{ asset('img/history.png') }}" alt="" class="w-10 mx-auto">
-            <div class="text-blue-300">History</div>
-        </button>
-    </div>
-
-    <div>
-        <button class="bg-gray-600 w-full p-2 rounded-xl" id="wd">
-            <img src="{{ asset('img/money-currency.png') }}" alt="" class="w-10 mx-auto">
-            <div class="text-blue-300">Withdraw</div>
-        </button>
-    </div>
-
-    <div>
-        <button class="bg-gray-600 w-full p-2 rounded-xl" id="swap">
-            <img src="{{ asset('img/up-and-down-arrow.png') }}" alt="" class="w-10 mx-auto">
-            <div class="text-blue-300">Swap</div>
-        </button>
-    </div>
-
-    <div>
-        <button class="bg-gray-600 w-full p-2 rounded-xl" id="claim">
-            <img src="{{ asset('img/logo.png') }}" alt="" class="w-10 mx-auto">
-            <div class="text-blue-300">Withdraw</div>
-        </button>
-    </div>
-
-</div>
-
-
-<div class="grid grid-cols-1 gap-4 mx-2 mt-5 text-gray-100">
-
-    <div class="bg-gray-700 rounded-3xl p-2 flex items-center">
-        <img src="{{ asset('img/logo.png') }}" alt="User Profile" class="w-12 h-12 object-cover">
-       
-        <div class="ml-2 flex-1">
-            <div class="flex justify-between">
-                <div>
-                    <div class="text-lg uppercase">Xwdoge</div>
-                    <div class="text-xs font-normal text-gray-400">{{ number_format($users->saldo, 2) }} XWODGE</div>
-                </div>
-                <div class="text-right">
-                    <div class="text-lg">
-                        <span>${{ number_format($users->saldo * $xwdoge , 2) }}</span>
-                    </div>
-                    <div class="text-xs font-normal text-green-400">${{ number_format($users->saldo * $xwdoge , 2) }}</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="bg-gray-700 rounded-3xl p-2 flex items-center">
-        <div class="rounded-full overflow-hidden bg-gray-400 w-10 h-10">
-            <img src="{{ asset('img/usdt.png') }}" alt="User Profile" class="w-10 h-10 object-cover">
-        </div>
-        <div class="ml-2 flex-1">
-            <div class="flex justify-between">
-                <div>
-                    <div class="text-lg">USDT</div>
-                    <div class="text-xs font-normal text-gray-400">{{ number_format($users->usdt, 2) }} USDT</div>
-                </div>
-                <div class="text-right">
-                    <div class="text-lg">
-                        <span>${{ number_format($users->usdt, 2) }}</span>
-                    </div>
-                    <div class="text-xs font-normal text-green-400">${{ number_format($users->usdt , 2) }}</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="bg-gray-700 rounded-3xl p-2 flex items-center">
+<div class="grid grid-cols-1 gap-4 mx-3 mt-4 text-white">
+    <div class="bg-gray-700 rounded-3xl p-2 flex items-center border-yellow-500 border-2">
         <div class="rounded-full overflow-hidden bg-gray-400 w-10 h-10">
             <img src="{{ asset('img/doge.png') }}" alt="User Profile" class="w-10 h-10 object-cover">
         </div>
         <div class="ml-2 flex-1">
             <div class="flex justify-between">
                 <div>
-                    <div class="text-lg">DOGE</div>
-                    <div class="text-xs font-normal text-gray-400">{{ number_format($users->doge, 2) }} Doge</div>
+                    <div class="text-lg text-white">${{ number_format($users->doge * doge_price() , 2) }}</div>
+                    <div class="text-xs font-normal text-gray-400">{{ number_format($users->doge, 2) }}</div>
                 </div>
-                <div class="text-right">
-                    <div class="text-lg">
-                        <span> ${{ number_format($users->doge * doge_price() , 2) }}</span>
-
-                    </div>
-                    <div class="text-xs font-normal text-green-400">{{ number_format($users->doge,2) }}</div>
-                </div>
+                <button class="bg-green-500 hover:bg-green-700 text-white font-bold px-2 rounded w-fit mr-2">
+                    Deposit
+                </button>
             </div>
         </div>
     </div>
-    @if ($user->status == 'active')
-    <div class="bg-gray-700 rounded-3xl p-2 flex items-center">
+
+    <div class="bg-gray-700 rounded-3xl p-2 flex items-center border-yellow-500 border-2">
         <img src="{{ asset('img/logo.png') }}" alt="User Profile" class="w-12 h-12 object-cover">
         <div class="ml-2 flex-1">
             <div class="flex justify-between">
                 <div>
-                    <div class="text-lg uppercase">Xwdoge Airdrop</div>
-                    <div class="text-xs font-normal text-gray-400">{{ number_format(100000, 2) }} XWODGE</div>
+                    <div class="text-lg text-white">${{ number_format($users->saldo * $xwdoge , 2) }}</div>
+                    <div class="text-xs font-normal text-gray-400">{{ number_format($users->saldo, 2) }}</div>
                 </div>
-                <div class="text-right">
-                    <div class="text-lg">
-                        <span> ${{ number_format(100000 * xwdoge_price() , 2) }}</span>
 
-                    </div>
-                    <div class="text-xs font-normal text-green-400">{{ number_format(100000,2) }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-gray-700 rounded-3xl p-2 flex items-center border-yellow-500 border-2">
+        <div class="rounded-full overflow-hidden bg-gray-400 w-10 h-10">
+            <img src="{{ asset('img/usdt.png') }}" alt="User Profile" class="w-10 h-10 object-cover">
+        </div>
+        <div class="ml-2 flex-1">
+            <div class="flex justify-between">
+                <div>
+                    <div class="text-lg">${{ number_format($users->usdt, 2) }}</div>
+                    <div class="text-xs font-normal text-gray-400">{{ number_format($users->usdt, 2) }}</div>
                 </div>
             </div>
         </div>
     </div>
+
+   
+    @if ($user->status == 'active')
+    <div class="bg-gray-700 rounded-3xl p-2 flex items-center border-yellow-500 border-2">
+        <img src="{{ asset('img/logo.png') }}" alt="User Profile" class="w-12 h-12 object-cover">
+        <div class="ml-2 flex-1">
+            <div class="flex justify-between">
+                <div>
+                    <div class="text-lg uppercase">${{ number_format(100000 * xwdoge_price() , 2) }}</div>
+                    <div class="text-xs font-normal text-gray-400">{{ number_format(100000, 2) }}</div>
+                </div>
+                <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold px-4 rounded w-fit mr-2">
+                    Claim
+                </button>
+            </div>
+        </div>
+    </div>
     @endif
-
 </div>
-
-
 
 
 @endsection

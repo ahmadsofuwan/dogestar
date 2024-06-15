@@ -14,7 +14,6 @@ class CustomerDashboard extends Controller
 {
     public function index()
     {
-        return redirect()->route('packages');
 
         $data = [
             'nav' => 'dashboard',
@@ -23,6 +22,4 @@ class CustomerDashboard extends Controller
 
         return view('customer.dashboard', $data);
     }
-
-  
 }

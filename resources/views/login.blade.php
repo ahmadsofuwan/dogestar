@@ -41,22 +41,22 @@
                                 </div>
                             </div>
                             <div class="page-content">
-                        
+
                                 <!-- separator -->
                                 <div class="separator-large"></div>
                                 <!-- end separator -->
-                        
+
                                 <!-- sign in -->
                                 <div class="sign-in">
                                     <div class="content text-center">
                                         <img class="image-illustration" src="{{ asset('img/logo.png') }}" alt="">
-                                        <h3>Welcome To DogeStar!</h3>
+                                        <h3 class="text-white">Welcome To DogeStar!!!</h3>
                                     </div>
-                        
+
                                     <!-- separator -->
                                     <div class="separator-large"></div>
                                     <!-- end separator -->
-                        
+
                                     <div class="content-form">
                                         <form class="list" method="post" action="{{ route('login.auth') }}">
                                             @csrf
@@ -64,7 +64,7 @@
                                                 <li class="item-content item-input">
                                                     <div class="item-inner">
                                                         <div class="item-input-wrap">
-                                                            <input type="text" placeholder="Username" name="username">
+                                                            <input type="text" placeholder="Wallet Address" name="username">
                                                         </div>
                                                     </div>
                                                 </li>
@@ -82,23 +82,23 @@
                                                 </div>
                                             </div>
                                         </form>
-                        
+
                                         <!-- separator -->
                                         <div class="separator-medium"></div>
                                         <!-- end separator -->
-                        
+
                                         <div class="link-forgot text-center text-small">
                                             <a href="#" class="">Forgot Password?</a>
                                         </div>
-                        
+
                                     </div>
                                 </div>
                                 <!-- end sign in -->
-                        
+
                                 <!-- separator -->
                                 <div class="separator-large"></div>
                                 <!-- end separator -->
-                        
+
                             </div>
                         </div>
 
