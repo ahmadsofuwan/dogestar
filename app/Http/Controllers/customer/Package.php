@@ -60,8 +60,8 @@ class Package extends Controller
                 'user_id' => Auth::user()->id,
                 'package_id' => $package->id,
                 'profit_per_hours' => $package->total_profit / $package->hours,
-                'max_claim' => $package->hours * 60,//claim permenit
-                'claim_time' => Carbon::now(),
+                'max_claim' => $package->hours * 60, //claim permenit
+                'claim_time' => Carbon::now()->addMinutes(1),
             ]);
 
             //logs kurangi saldo
