@@ -3,7 +3,7 @@
 
 
 <div class="grid grid-cols-1 gap-4 mb-3 mt-4 mx-3 text-white">
-    <div class="bg-gray-800 p-4 rounded-lg flex items-center justify-between border-yellow-500 border-2">
+    <div class="p-4 rounded-lg flex items-center justify-between border-yellow-500 border-2">
         <div class="flex items-center">
             <img src="{{ asset('img/logo.png') }}" alt="Tron Logo" class="w-8 h-8 mr-2">
             <div>
@@ -13,7 +13,7 @@
         </div>
         <button class="bg-yellow-500 px-3 py-1 rounded-md text-sm w-fit font-black">Claim</button>
     </div>
-    <div class="bg-gray-800 p-4 rounded-lg flex items-center justify-between border-yellow-500 border-2">
+    <div class="p-4 rounded-lg flex items-center justify-between border-yellow-500 border-2">
         <div class="flex items-center">
             <img src="{{ asset('img/doge.png') }}" alt="Tron Logo" class="w-8 h-8 mr-2">
             <div>
@@ -29,7 +29,7 @@
     <img src="{{ asset('img/fan.gif') }}" alt="" class="w-3/4 mx-auto">
 </div>
 <div class="text-center text-white mt-4 mb-4">
-    <p class="text-2xl text-yellow-500"><span class=" text-white font-black">0.006537</span>   Doge</p>
+    <p class="text-2xl text-yellow-500"><span class=" text-white font-black">0.006537</span> Doge</p>
     <p class="text-lg">100 Hours ⚡</p>
 </div>
 
@@ -42,7 +42,7 @@
     </div>
 </div>
 <div class="grid grid-cols-1 gap-4 mb-3 mt-4 mx-3 text-white ">
-    <div class="bg-gray-800 p-4 rounded-lg flex items-center justify-between border-yellow-500 border-2">
+    <div class="p-4 rounded-lg flex items-center justify-between border-yellow-500 border-2">
         <div class="flex items-center">
             <img src="{{ asset('img/logo.png') }}" alt="Tron Logo" class="w-8 h-8 mr-2">
             <div>
@@ -52,8 +52,8 @@
         </div>
         <button class="bg-yellow-500 px-3 py-1 rounded-md text-sm w-fit font-black">Claim</button>
     </div>
-   
-    
+
+
 </div>
 
 @endsection

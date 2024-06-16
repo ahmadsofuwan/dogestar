@@ -38,7 +38,7 @@
 </div>
 
 <div class="grid grid-cols-1 gap-4 mx-3 mt-4 text-white">
-    <div class="bg-gray-700 rounded-3xl p-2 flex items-center border-yellow-500 border-2">
+    <div class=" rounded-3xl p-2 flex items-center border-yellow-500 border-2">
         <div class="rounded-full overflow-hidden bg-gray-400 w-10 h-10">
             <img src="{{ asset('img/doge.png') }}" alt="User Profile" class="w-10 h-10 object-cover">
         </div>
@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <div class="bg-gray-700 rounded-3xl p-2 flex items-center border-yellow-500 border-2">
+    <div class=" rounded-3xl p-2 flex items-center border-yellow-500 border-2">
         <img src="{{ asset('img/logo.png') }}" alt="User Profile" class="w-12 h-12 object-cover">
         <div class="ml-2 flex-1">
             <div class="flex justify-between">
@@ -68,7 +68,7 @@
         </div>
     </div>
 
-    <div class="bg-gray-700 rounded-3xl p-2 flex items-center border-yellow-500 border-2">
+    <div class=" rounded-3xl p-2 flex items-center border-yellow-500 border-2">
         <div class="rounded-full overflow-hidden bg-gray-400 w-10 h-10">
             <img src="{{ asset('img/usdt.png') }}" alt="User Profile" class="w-10 h-10 object-cover">
         </div>
@@ -84,7 +84,7 @@
 
    
     @if ($user->status == 'active')
-    <div class="bg-gray-700 rounded-3xl p-2 flex items-center border-yellow-500 border-2">
+    <div class=" rounded-3xl p-2 flex items-center border-yellow-500 border-2">
         <img src="{{ asset('img/logo.png') }}" alt="User Profile" class="w-12 h-12 object-cover">
         <div class="ml-2 flex-1">
             <div class="flex justify-between">

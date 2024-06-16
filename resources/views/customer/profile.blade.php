@@ -7,7 +7,7 @@
 </div>
 <div class="text-center mt-2 font-bold text-xl text-yellow-500 mb-5">Dogestar</div>
 
-<div class="bg-gray-800 p-4 rounded-lg shadow-md flex justify-between items-center border-yellow-500 border-2 mt-5">
+<div class="p-4 rounded-lg shadow-md flex justify-between items-center border-yellow-500 border-2 mt-5">
     <div class="flex items-center">
         <div>
             <h3 class="text-lg font-semibold text-white">Invite Link</h3>
@@ -21,7 +21,7 @@
         </button>
     </div>
 </div>
-<div class="bg-gray-800 p-4 rounded-lg shadow-md flex justify-between items-center border-yellow-500 border-2 mt-5">
+<div class="p-4 rounded-lg shadow-md flex justify-between items-center border-yellow-500 border-2 mt-5">
     <div class="flex items-center">
         <img src="{{ asset('img/logo.png') }}" alt="Unclaimed Amount Logo" class="w-8 h-8 mr-2">
         <div>

@@ -25,7 +25,7 @@ class Auth extends Controller
                 return redirect()->intended(route('dashboard.admin'));
             }
 
-            return redirect()->intended(route('packages'));
+            return redirect()->intended(route('dashboard'));
         }
         Alert::error('Error', 'Incorrect Wallet Address or Password');
         return back()->withInput();
