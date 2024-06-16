@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="text-right">
-        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="copyToClipboard('https://t.me/supermeo')">
+        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="copyToClipboard('{{ route('register', ['ref' => $user->username]) }}')">
             <ion-icon name="copy-outline"></ion-icon>
         </button>
     </div>
@@ -49,7 +49,11 @@
 <script>
     function copyToClipboard(text) {
         navigator.clipboard.writeText(text).then(function() {
-            alert('Link copied to clipboard');
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Link copied to clipboard successfully'
+            });
         }, function(err) {
             console.error('Could not copy text: ', err);
         });
