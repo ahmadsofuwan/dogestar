@@ -56,14 +56,14 @@ class Wallet extends Controller
         }
 
         switch ($request->type) {
-            case 'xwdoge':
+            case 'dogestar':
                 $fee = 1;
                 $wallet = User::where('wallet', $request->wallet)->first();
                 if (empty($wallet)) {
-                    return response()->json(['error' => 'wallet not found' . $request->wallet], 400);
+                    return response()->json(['error' => 'wallet not found ' . $request->wallet], 400);
                 }
                 if (Auth::user()->saldo < $request->amount) {
-                    return response()->json(['error' => 'insufficient Xwdoge'], 400);
+                    return response()->json(['error' => 'insufficient Dogestar'], 400);
                 }
                 if (Auth::user()->doge < $fee) {
                     return response()->json(['error' => 'insufficient Doge'], 400);
@@ -92,7 +92,7 @@ class Wallet extends Controller
                 $log->reff = Auth::user()->id;
                 $log->target = $wallet->id;
                 $log->value = '-' . $request->amount;
-                $log->note = 'Tranfer xwdoge';
+                $log->note = 'Tranfer Dogestar';
                 $log->save();
 
                 //log user transfer reciver
@@ -100,7 +100,7 @@ class Wallet extends Controller
                 $log->reff =  $wallet->id;
                 $log->target = Auth::user()->id;
                 $log->value = '-' . $request->amount;
-                $log->note = 'Tranfer xwdoge';
+                $log->note = 'Tranfer Dogestar';
                 $log->save();
                 return response()->json(['success' => 'success transfered ']);
                 break;
@@ -287,10 +287,10 @@ class Wallet extends Controller
 
                 return response()->json(['success' => 'Successfully withdrawn']);
                 break;
-            case 'xwdoge':
+            case 'dogestar':
                 $fee = 2;
                 if (Auth::user()->saldo < $request->amount) {
-                    return response()->json(['error' => 'xwdoge is not enough'], 400);
+                    return response()->json(['error' => 'dogestar is not enough'], 400);
                 }
 
                 if (Auth::user()->doge < $fee) {

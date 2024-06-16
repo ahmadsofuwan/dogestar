@@ -23,16 +23,16 @@
     <span class="text-white text-xl font-black"> $ {{ number_format($total, 2) }}</span>
 </div>
 <div class="w-fit mx-auto my-5 grid grid-cols-2 gap-4 ">
-    <button class="bg-red-500 text-white px-4 py-2 rounded-xl w-full">
+    <button class="bg-red-500 text-white px-4 py-2 rounded-xl w-full" id="wd">
         Withdraw
     </button>
-    <button class="bg-blue-500 text-white px-4 py-2 rounded-xl w-full">
+    <button class="bg-blue-500 text-white px-4 py-2 rounded-xl w-full" id="send">
         Transfer
     </button>
     <button class="bg-purple-500 text-white px-4 py-2 rounded-xl w-full">
         Swap
     </button>
-    <button class="bg-yellow-500 text-white px-4 py-2 rounded-xl w-full">
+    <button class="bg-yellow-500 text-white px-4 py-2 rounded-xl w-full" id="hystori">
         History
     </button>
 </div>
@@ -48,7 +48,7 @@
                     <div class="text-lg text-white">${{ number_format($users->doge * doge_price() , 2) }}</div>
                     <div class="text-xs font-normal text-gray-400">{{ number_format($users->doge, 2) }}</div>
                 </div>
-                <button class="bg-green-500 hover:bg-green-700 text-white font-bold px-2 rounded w-fit mr-2">
+                <button class="bg-green-500 hover:bg-green-700 text-white font-bold px-2 rounded w-fit mr-2" id="deposit">
                     Deposit
                 </button>
             </div>
@@ -111,9 +111,9 @@
             title: 'P2P Trading',
             html: `
                     <div class="grid grid-cols-1 gap-2">
-                        <button id="xwdoge" class="bg-blue-500 text-white px-4 py-2 rounded-xl flex items-center">
-                            <img src="{{ asset('img/logo.png') }}" alt="XWDoge" class="w-10 h-10 object-cover">
-                            <span class="ml-2">XWDoge</span>
+                        <button id="dogestar" class="bg-blue-500 text-white px-4 py-2 rounded-xl flex items-center">
+                            <img src="{{ asset('img/logo.png') }}" alt="Dogestar" class="w-10 h-10 object-cover">
+                            <span class="ml-2">Dogestar</span>
                         </button>
                         <button id="usdt" class="bg-green-500 text-white px-4 py-2 rounded-xl flex items-center">
                             <img src="{{ asset('img/usdt.png') }}" alt="USDT" class="w-10 h-10 object-cover">
@@ -132,7 +132,7 @@
                 return document.getElementById('wallet').value;
             }
         })
-        $('#xwdoge, #usdt, #doge').click(function(e) {
+        $('#dogestar, #usdt, #doge').click(function(e) {
             let id = $(this).attr('id');
             Swal.fire({
                 title: 'Transfer Fee 1 DOGE',
@@ -216,9 +216,9 @@
             title: 'P2P Trading',
             html: `
                     <div class="grid grid-cols-1 gap-2">
-                        <button id="xwdoge" class="bg-blue-500 text-white px-4 py-2 rounded-xl flex items-center">
+                        <button id="dogestar" class="bg-blue-500 text-white px-4 py-2 rounded-xl flex items-center">
                             <img src="{{ asset('img/logo.png') }}" alt="XWDoge" class="w-10 h-10 object-cover">
-                            <span class="ml-2">XWDoge</span>
+                            <span class="ml-2">DogeStar</span>
                         </button>
                         <button id="usdt" class="bg-green-500 text-white px-4 py-2 rounded-xl flex items-center">
                             <img src="{{ asset('img/usdt.png') }}" alt="USDT" class="w-10 h-10 object-cover">
@@ -233,7 +233,7 @@
                 return document.getElementById('wallet').value;
             }
         })
-        $('#xwdoge, #usdt, #doge').click(function(e) {
+        $('#dogestar, #usdt, #doge').click(function(e) {
             let id = $(this).attr('id');
             Swal.fire({
                 title: `Withdraw  <span class="uppercase"> ${id}</span>`,
