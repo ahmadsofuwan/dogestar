@@ -19,10 +19,14 @@ class Profile extends Controller
             $wa = phone_to_whatsapp_link($upline->phone);
         }
 
+        $downline = User::where('upline', Auth::user()->id)->get();
+
+
 
         $data = [
             'user' => Auth::user(),
             'wa' => $wa,
+            'downline' => $downline,
         ];
         return view('customer.profile', $data);
     }

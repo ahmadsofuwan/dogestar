@@ -38,7 +38,7 @@
 
 <div class="text-center mt-5">
     <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-4 px-8 rounded text-xl">
-        Invited (0)
+        Invited ({{ number_format($downline->count()) }})
     </button>
 </div>
 
