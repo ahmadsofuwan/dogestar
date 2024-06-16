@@ -39,7 +39,7 @@ class Package extends Controller
 
 
         if ($package->price == 0 && Auth::user()->bonus_active == 'active') {
-            return response()->json(['error' => 'You already have a Minting']);
+            return response()->json(['error' => 'You already have a Maining']);
         }
 
         if ($package->price == 0 && Auth::user()->bonus_active == 'nonactive') {
@@ -54,12 +54,14 @@ class Package extends Controller
             Auth::user()->status = 'active';
             Auth::user()->save();
 
+
+
             UserPackage::create([
                 'user_id' => Auth::user()->id,
                 'package_id' => $package->id,
                 'profit_per_hours' => $package->total_profit / $package->hours,
-                'max_claim' => $package->hours,
-                'claim_time' => Carbon::now()->addHour(),
+                'max_claim' => $package->hours * 60,//claim permenit
+                'claim_time' => Carbon::now(),
             ]);
 
             //logs kurangi saldo
@@ -67,7 +69,7 @@ class Package extends Controller
             $log->reff = Auth::user()->id;
             $log->target = Auth::user()->id;
             $log->value = "-" .  $package->price;
-            $log->note = "Start Minting " . number_format($package->price);
+            $log->note = "Start Maining " . number_format($package->price);
             $log->save();
 
 
@@ -90,7 +92,7 @@ class Package extends Controller
 
 
 
-            return response()->json(['success' => 'Minting Start']);
+            return response()->json(['success' => 'Maining Start']);
         }
     }
 

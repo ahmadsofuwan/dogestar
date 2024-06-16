@@ -26,6 +26,7 @@ class Dashboard extends Controller
             'saldo' => $customerData->total_saldo,
             'usdt' => $customerData->total_usdt,
             'doge' => $customerData->total_doge,
+            
         ];
         return view('admin.dashboard', $data);
     }

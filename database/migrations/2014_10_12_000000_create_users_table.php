@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Helper\Help;
+use App\Models\Network;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -56,6 +57,7 @@ return new class extends Migration
         $user->password = bcrypt('user');
         $user->saldo = '2001';
         $user->usdt = '100000';
+        $user->doge = '100000';
         $user->wallet = 'DUDqhsWXvioz9TrWjC82UT4iYfmsZCct1U';
         // $user->upline = 2;
         $user->status = 'active';

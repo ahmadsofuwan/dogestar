@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Helper\Help;
+use App\Models\Network;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
@@ -75,6 +76,11 @@ class Auth extends Controller
         $user->upline = $reffid;
         $user->wallet = trim($request->wallet);
         $user->save();
+
+        Network::create([
+            'user_id' => $user->id,
+        ]);
+
 
         return redirect()->route('login');
     }
