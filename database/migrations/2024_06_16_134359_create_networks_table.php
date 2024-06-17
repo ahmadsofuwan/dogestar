@@ -21,9 +21,9 @@ return new class extends Migration
             $table->decimal('boost_matching', 20, 3)->default('0');
             $table->decimal('network_boost', 20, 3)->default('0');
             //last claim
-            $table->dateTime('data_network_matching')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->dateTime('data_boost_matching')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->dateTime('data_network_boost')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('date_network_matching')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('date_boost_matching')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('date_network_boost')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
             //limit max claim
             $table->bigInteger('network_matching_limit')->default(0);
             $table->bigInteger('boost_matching_limit')->default(0);

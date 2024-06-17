@@ -11,7 +11,7 @@
                 <p class="text-white text-xl">{{ number_format($user->networks->network_matching, 8) }}</p>
             </div>
         </div>
-        <button class="bg-yellow-500 px-3 py-1 rounded-md text-sm w-fit font-black">Claim</button>
+        <button class="bg-yellow-500 px-3 py-1 rounded-md text-sm w-fit font-black" id="claim-network-matching">Claim</button>
     </div>
     <div class="p-4 rounded-lg flex items-center justify-between border-yellow-500 border-2">
         <div class="flex items-center">
@@ -21,7 +21,7 @@
                 <p class="text-white text-xl">{{ number_format($user->networks->network_boost, 8) }}</p>
             </div>
         </div>
-        <button class="bg-yellow-500 px-3 py-1 rounded-md text-sm w-fit font-black">Claim</button>
+        <button class="bg-yellow-500 px-3 py-1 rounded-md text-sm w-fit font-black" id="claim-network-boost">Claim</button>
     </div>
 </div>
 
@@ -35,10 +35,10 @@
 
 <div class="grid grid-cols-2 gap-4 font-black text-white">
     <div>
-        <button class="bg-yellow-500 px-3 py-1 rounded-md text-sm w-full h-12">Claim</button>
+        <button class="bg-yellow-500 px-3 py-1 rounded-md text-sm w-full h-12" id="claim-staking">Claim</button>
     </div>
     <div>
-        <button class="bg-yellow-500 px-3 py-1 rounded-md text-sm w-full h-12">Detail</button>
+        <button class="bg-yellow-500 px-3 py-1 rounded-md text-sm w-full h-12" id="detail">Detail</button>
     </div>
 </div>
 <div class="grid grid-cols-1 gap-4 mb-3 mt-4 mx-3 text-white ">
@@ -50,7 +50,7 @@
                 <p class="text-white text-xl">{{ number_format($user->networks->boost_matching, 8) }}</p>
             </div>
         </div>
-        <button class="bg-yellow-500 px-3 py-1 rounded-md text-sm w-fit font-black">Claim</button>
+        <button class="bg-yellow-500 px-3 py-1 rounded-md text-sm w-fit font-black" id="claim-boost-matching">Claim</button>
     </div>
 
 
@@ -66,5 +66,249 @@
             let perscontxt = parseFloat($("#perscon").text());
             $("#perscon").text((perscontxt + perscon).toFixed(8));
         }, 1000);
+
+
+
+       $('#claim-network-boost').click(function() {
+        Swal.fire({
+            title: 'Confirmation',
+            text: '10 Doge will be deducted from your balance. Enter your password to proceed:',
+            icon: 'warning',
+            input: 'password',
+            inputAttributes: {
+                autocapitalize: 'off',
+                autocorrect: 'off'
+            },
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, proceed!'
+        }).then((result) => {
+            if (result.isConfirmed && result.value) {
+                $.ajax({
+                    url: '{{ route("claim_network_boost") }}',
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        password: result.value
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            Swal.fire(
+                                'Success!',
+                                response.message,
+                                'success'
+                            );
+                        } else {
+                            Swal.fire(
+                                'Failed!',
+                                response.message,
+                                'error'
+                            );
+                        }
+                    },
+                    error: function(response) {
+                        Swal.fire(
+                            'Failed!',
+                            'An error occurred while processing your claim.',
+                            'error'
+                        );
+                    }
+                });
+            }
+        });
+
+
+
+       });
+       $('#claim-network-matching').click(function() {
+        Swal.fire({
+            title: 'Confirmation',
+            text: '10 Doge will be deducted from your balance. Enter your password to proceed:',
+            icon: 'warning',
+            input: 'password',
+            inputAttributes: {
+                autocapitalize: 'off',
+                autocorrect: 'off'
+            },
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, proceed!'
+        }).then((result) => {
+            if (result.isConfirmed && result.value) {
+                $.ajax({
+                    url: '{{ route("claim_network_matching") }}',
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        password: result.value
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            Swal.fire(
+                                'Success!',
+                                response.message,
+                                'success'
+                            );
+                        } else {
+                            Swal.fire(
+                                'Failed!',
+                                response.message,
+                                'error'
+                            );
+                        }
+                    },
+                    error: function(response) {
+                        Swal.fire(
+                            'Failed!',
+                            'An error occurred while processing your claim.',
+                            'error'
+                        );
+                    }
+                });
+            }
+        });
+
+
+
+       });
+       $('#claim-boost-matching').click(function() {
+        Swal.fire({
+            title: 'Confirmation',
+            text: '10 Doge will be deducted from your balance. Enter your password to proceed:',
+            icon: 'warning',
+            input: 'password',
+            inputAttributes: {
+                autocapitalize: 'off',
+                autocorrect: 'off'
+            },
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, proceed!'
+        }).then((result) => {
+            if (result.isConfirmed && result.value) {
+                $.ajax({
+                    url: '{{ route("claim_boost_matching") }}',
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        password: result.value
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            Swal.fire(
+                                'Success!',
+                                response.message,
+                                'success'
+                            );
+                        } else {
+                            Swal.fire(
+                                'Failed!',
+                                response.message,
+                                'error'
+                            );
+                        }
+                    },
+                    error: function(response) {
+                        Swal.fire(
+                            'Failed!',
+                            'An error occurred while processing your claim.',
+                            'error'
+                        );
+                    }
+                });
+            }
+        });
+
+
+
+       });
+
+       $('#claim-staking').click(function() {
+        Swal.fire({
+            title: 'Confirmation',
+            text: '0.1 Doge will be deducted from your balance. Enter your password to proceed:',
+            icon: 'warning',
+            input: 'password',
+            inputAttributes: {
+                autocapitalize: 'off',
+                autocorrect: 'off'
+            },
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, proceed!'
+        }).then((result) => {
+            if (result.isConfirmed && result.value) {
+                $.ajax({
+                    url: '{{ route("claim_staking") }}',
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        password: result.value
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            Swal.fire(
+                                'Success!',
+                                response.message,
+                                'success'
+                            );
+                        } else {
+                            Swal.fire(
+                                'Failed!',
+                                response.message,
+                                'error'
+                            );
+                        }
+                    },
+                    error: function(response) {
+                        Swal.fire(
+                            'Failed!',
+                            'An error occurred while processing your claim.',
+                            'error'
+                        );
+                    }
+                });
+            }
+        });
+
+
+
+       });
+       $('#detail').click(function(){
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('minting.detail') }}",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                    },
+                    dataType: "html",
+                    success: function(response) {
+                        Swal.fire({
+                            html: response,
+                            showCloseButton: true,
+                            showConfirmButton: false,
+                            width: '100%',
+                            height: '100%',
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: xhr.responseJSON.error,
+                        });
+                    }
+                });
+            })
+
+
+
     </script>
+    
+
+
 @endpush

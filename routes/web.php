@@ -38,6 +38,10 @@ Route::middleware([AuthCheckMiddleware::class])->group(function () {
     //customer 
     Route::middleware([AuthCustomer::class])->group(function () {
         Route::get('/', [App\Http\Controllers\CustomerDashboard::class, 'index'])->name('dashboard');
+        Route::post('/claim-network-boost', [App\Http\Controllers\CustomerDashboard::class, 'claimNetworkBoost'])->name('claim_network_boost');
+        Route::post('/claim-network-matching', [App\Http\Controllers\CustomerDashboard::class, 'claimNetworkMatching'])->name('claim_network_matching');
+        Route::post('/claim-boost-matching', [App\Http\Controllers\CustomerDashboard::class, 'claimBoostMatching'])->name('claim_boost_matching');
+        Route::post('/claim-staking', [App\Http\Controllers\CustomerDashboard::class, 'claimStaking'])->name('claim_staking');
 
         Route::prefix('swap')->group(function () {
             Route::get('/', [App\Http\Controllers\customer\Swap::class, 'index'])->name('swap');
