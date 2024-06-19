@@ -48,7 +48,7 @@
 </div>
 <div class="text-center text-white mt-4 mb-4">
     <p class="text-2xl text-yellow-500"><span class=" text-white font-black" id="perscon">{{ number_format($user->staking_token, 8) }}</span> Doge</p>
-    <p class="text-lg">{{ convers($totalHours) }} Hours ⚡</p>
+    <p class="text-lg">{{ convers($totalHours) }} Hours <span class="animate-pulse">⚡</span> </p>
 </div>
 
 <div class="grid grid-cols-2 gap-4 font-black text-white">
