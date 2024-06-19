@@ -69,4 +69,14 @@ class Package extends Controller
         Alert::success('Success', 'Success Delete Data');
         return back();
     }
+
+    public function resetStock(Request $request)
+    {
+        $data = ModelsPackage::all();
+        foreach ($data as $item) {
+            $item->stock = $item->static_stock;
+            $item->save();
+        }
+        return response()->json(['count package' => $data->count()]);
+    }
 }
