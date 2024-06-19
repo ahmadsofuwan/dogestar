@@ -17,9 +17,18 @@ class CustomerDashboard extends Controller
     //claim 15 hari sekali
     //peningkatan network boost 10%
     public $claimLimitDays = 15;
-    public $claimMax = 2000;
-    public $claimUp  = 1000 * 0.1;
+    public $claimMaxNetworkMaching = 10000;
+    public $claimMaxBoostkMaching = 110;
+    public $claimFeeBoostkMaching = 10;
+    public $claimMaxDoge = 2000;
+    public $claimGasFee  = 0.1; //untuk token potong doge
+    public $claimGasFeeDoge  = 100; //doge
 
+
+    public function getClaimUp()
+    {
+        return $this->claimMaxDoge * 0.1;
+    }
 
 
     public function index()
@@ -41,6 +50,9 @@ class CustomerDashboard extends Controller
             'user' => $user,
             'perscon' => $perscon,
             'totalHours' => $totalHours,
+            'claimMaxNetworkMaching' => $this->claimMaxNetworkMaching,
+            'maxClaimDoge' => $this->claimMaxDoge,
+            'claimMaxBoostkMaching' => $this->claimMaxBoostkMaching,
 
         ];
 

@@ -39,7 +39,7 @@ class Package extends Controller
 
 
         if ($package->price == 0 && Auth::user()->bonus_active == 'active') {
-            return response()->json(['error' => 'You already have a Maining']);
+            return response()->json(['error' => 'You already have a Boost']);
         }
 
         if ($package->price == 0 && Auth::user()->bonus_active == 'nonactive') {
@@ -92,7 +92,7 @@ class Package extends Controller
 
 
 
-            return response()->json(['success' => 'Maining Start']);
+            return response()->json(['success' => 'Done']);
         }
     }
 

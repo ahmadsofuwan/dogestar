@@ -16,9 +16,9 @@
             <span class="mt-0">
                 <img src="{{ asset('img/pickaxe.png') }}" alt="" class="w-7">
             </span>
-            <span class="tabbar-label">Main</span>
+            <span class="tabbar-label">Mine</span>
         </a>
-        
+
         <a href="{{ route('profile') }}" class="tab-link {{ request()->is('profile*') ? 'tab-link-active' : '' }}">
             <span class="mt-0">
                 <img src="{{ asset('img/add-user.png') }}" alt="" class="w-7">

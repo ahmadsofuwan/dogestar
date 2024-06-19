@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="text-right">
-                <button class="btn-buy bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" data-id="{{ $package->id }}">Buy</button>
+                <button class="btn-buy bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" data-id="{{ $package->id }}">RUN</button>
             </div>
         </div>
         @endforeach
@@ -37,10 +37,11 @@
                     class: 'px-5 bg-gray-500' // Adding class px-3 and bg-gray-500
                 },
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Submit!',
-                cancelButtonText: 'Cancel',
+            confirmButtonColor: 'rgb(132 204 22)',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+            background: '#000000',
                 showLoaderOnConfirm: true,
                 preConfirm: (login) => {
                     return new Promise(function(resolve, reject) {

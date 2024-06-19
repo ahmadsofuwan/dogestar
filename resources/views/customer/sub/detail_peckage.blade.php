@@ -1,9 +1,9 @@
-<div>
-    <strong class="mb-5 font-black">Minting Detail</strong>
+<div class="text-yellow-500">
+    <strong class="mb-5 font-black">Boost Details</strong>
     <table class="table-auto w-full text-xs mt-5">
         <thead>
             <tr>
-                <th>Mint</th>
+                <th>Boost</th>
                 <th>Hours</th>
                 <th>Token/Hours</th>
                 <th>Date</th>

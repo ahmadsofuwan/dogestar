@@ -25,36 +25,53 @@ return new class extends Migration
         });
         //gratis
         $data = [
-            [
-                'price' => 0,
-                'hours' => 1000,
-                'total_profit' => 10000
-            ],
-            [
-                'price' => 10,
-                'hours' => 1000,
-                'total_profit' => 100000
-            ],
-            [
-                'price' => 100,
-                'hours' => 10000,
-                'total_profit' => 1000000
-            ],
+
             [
                 'price' => 500,
-                'hours' => 500000,
-                'total_profit' => 50000000
+                'hours' => 360,
+                'total_profit' => 550
             ],
             [
                 'price' => 1000,
-                'hours' => 100000,
-                'total_profit' => 10000000
+                'hours' => 312,
+                'total_profit' => 1100
+            ],
+            [
+                'price' => 3000,
+                'hours' => 264,
+                'total_profit' => 3300
+            ],
+            [
+                'price' => 5000,
+                'hours' => 216,
+                'total_profit' => 5500
             ],
             [
                 'price' => 10000,
-                'hours' => 1000000,
-                'total_profit' => 100000000
+                'hours' => 168,
+                'total_profit' => 11000
             ],
+            [
+                'price' => 50000,
+                'hours' => 120,
+                'total_profit' => 55000
+            ],
+            [
+                'price' => 100000,
+                'hours' => 72,
+                'total_profit' => 110000
+            ],
+            [
+                'price' => 500000,
+                'hours' => 48,
+                'total_profit' => 550000
+            ],
+            [
+                'price' => 1000000,
+                'hours' => 24,
+                'total_profit' => 1100000
+            ],
+
         ];
         foreach ($data as $key => $value) {
             Package::create($value);
