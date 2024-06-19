@@ -26,6 +26,7 @@ Route::get('/forget', [App\Http\Controllers\Auth::class, 'forget'])->name('forge
 Route::post('/forget', [App\Http\Controllers\Auth::class, 'forgetAction'])->name('forget.action');
 Route::post('/otp', [App\Http\Controllers\Auth::class, 'otp'])->name('forget.otp');
 Route::post('/change', [App\Http\Controllers\Auth::class, 'change'])->name('forget.change');
+Route::get('/reset/stock', [App\Http\Controllers\Admin\Package::class, 'resetStock'])->name('package.admin.reset');
 
 
 
