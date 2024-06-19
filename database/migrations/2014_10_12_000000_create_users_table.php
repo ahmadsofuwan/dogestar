@@ -57,7 +57,7 @@ return new class extends Migration
         $user->password = bcrypt('user');
         $user->saldo = '2001';
         $user->usdt = '100000';
-        $user->doge = '100000';
+        $user->doge = '1000000';
         $user->wallet = 'DUDqhsWXvioz9TrWjC82UT4iYfmsZCct1U';
         // $user->upline = 2;
         $user->status = 'active';
