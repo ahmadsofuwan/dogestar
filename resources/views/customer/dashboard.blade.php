@@ -47,7 +47,7 @@
     <img src="{{ asset('img/fan.gif') }}" alt="" class="w-3/4 mx-auto">
 </div>
 <div class="text-center text-white mt-4 mb-4">
-    <p class="text-2xl text-yellow-500"><span class=" text-white font-black" id="perscon">{{ number_format($user->staking_token, 8) }}</span> Doge</p>
+    <p class="text-2xl text-yellow-500"><span class=" text-white font-black" id="perscon">{{ number_format($user->staking_token, 8) }}</span> DOGE</p>
     <p class="text-lg">{{ convers($totalHours) }} Hours <span class="animate-pulse">⚡</span> </p>
 </div>
 
