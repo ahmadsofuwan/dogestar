@@ -12,7 +12,7 @@
         <div>
             <h3 class="text-lg font-semibold text-white">Invite Link</h3>
             <a href="https://t.me/supermeo" class="text-blue-400 underline">{{ route('register', ['ref' => $user->username]) }}</a>
-            <p class="text-sm text-yellow-500 mt-2">Get 1 SUPER for each meow invited, and get 1% of total claim amount when your friends claim their rewards.</p>
+            <p class="text-sm text-yellow-500 mt-2">Get 1,000 Dogestar for each New invited.</p>
         </div>
     </div>
     <div class="text-right">
@@ -25,7 +25,8 @@
     <div class="flex items-center">
         <img src="{{ asset('img/logo.png') }}" alt="Unclaimed Amount Logo" class="w-8 h-8 mr-2">
         <div>
-            <p class="text-white">Unclaimed amount</p>
+            <p class="text-yellow-500">3k Per claim </p>
+            <p class="text-white">Unclaimed amount </p>
             <p class="text-white text-xl">0</p>
         </div>
     </div>

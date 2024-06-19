@@ -26,7 +26,7 @@
                     <td>Date</td>
                     <td>USDT</td>
                     <td>Dogestar</td>
-                    <td>Minting</td>
+                    <td>Doge</td>
                     <td>Action</td>
                 </tr>
             </thead>
@@ -37,7 +37,7 @@
                     <td>{{ $user->created_at }}</td>
                     <td>{{ number_format($user->usdt,2) }}</td>
                     <td>{{ number_format($user->saldo) }}</td>
-                    <td>{{ number_format($user->totalprice,2) }}</td>
+                    <td>{{ number_format($user->doge,2) }}</td>
                     <td class="flex justify-between px-1 lg:px-5">
                         <button class="mx-1 btn-edit" title="Edit" link="{{ route('users.admin.edit',['id'=>encrypt($user->id)]) }}"
                             data-id="{{ encrypt($user->id) }}"

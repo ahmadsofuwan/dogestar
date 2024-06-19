@@ -21,7 +21,7 @@ class Witdraw extends Controller
 
 
         $data = [
-            'nav' => 'Witdraw',
+            'nav' => 'WD',
             'witdraws' =>  $witdraw,
         ];
         return view('admin.witdraw', $data);
@@ -33,7 +33,7 @@ class Witdraw extends Controller
 
 
         $data = [
-            'nav' => 'WitdrawUsdt',
+            'nav' => 'WD USDT',
             'witdraws' =>  $witdraw,
         ];
         return view('admin.witdrawusdt', $data);

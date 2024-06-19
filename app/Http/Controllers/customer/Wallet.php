@@ -29,6 +29,9 @@ class Wallet extends Controller
     public function index()
     {
         $xwdoge = xwdoge_price();
+        $dogestar = dogestar_price();
+
+
         $total = Auth::user()->usdt;
         $total += Auth::user()->doge * doge_price();
         $total += Auth::user()->saldo * $xwdoge;
@@ -41,7 +44,7 @@ class Wallet extends Controller
         $data = [
             'users' => Auth::user(),
             'total' => $total,
-            'xwdoge' => $xwdoge,
+            'dogestar' => $dogestar,
             'user' => Auth::user(),
         ];
 

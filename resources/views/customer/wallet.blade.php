@@ -57,7 +57,7 @@
         <div class="ml-2 flex-1">
             <div class="flex justify-between">
                 <div>
-                    <div class="text-lg text-white">${{ number_format($users->saldo * $xwdoge , 2) }}</div>
+                    <div class="text-lg text-white">${{ number_format($users->saldo * $dogestar , 2) }}</div>
                     <div class="text-xs font-normal text-gray-400">{{ number_format($users->saldo, 2) }}</div>
                 </div>
 
@@ -80,22 +80,22 @@
     </div>
 
 
-    @if ($user->status == 'active')
+    {{-- @if ($user->status == 'active') --}}
     <div class=" rounded-3xl p-2 flex items-center border-yellow-500 border-2">
         <img src="{{ asset('img/logo.png') }}" alt="User Profile" class="w-12 h-12 object-cover">
         <div class="ml-2 flex-1">
             <div class="flex justify-between">
                 <div>
-                    <div class="text-lg uppercase">${{ number_format(100000 * xwdoge_price() , 2) }}</div>
-                    <div class="text-xs font-normal text-gray-400">{{ number_format(100000, 2) }}</div>
+                    <div class="text-lg uppercase">${{ number_format(100000 * dogestar_price() , 2) }}</div>
+                    <div class="text-xs font-normal text-gray-400">{{ number_format(10000, 2) }}</div>
                 </div>
                 <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold px-4 rounded w-fit mr-2">
-                    Claim
+                    Lock
                 </button>
             </div>
         </div>
     </div>
-    @endif
+    {{-- @endif --}}
 </div>
 
 

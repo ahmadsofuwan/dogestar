@@ -29,6 +29,7 @@ class Users extends Controller
                 'users.role as role',
                 'users.phone as phone',
                 'users.wallet as wallet',
+                'users.doge as doge',
             )
             ->groupBy('users.id')
             ->get();

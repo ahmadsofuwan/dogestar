@@ -27,6 +27,30 @@ if (!function_exists('xwdoge_price')) {
         return $lastPrice;
     }
 }
+if (!function_exists('dogestar_price')) {
+    function dogestar_price()
+    {
+        $cacheKey = 'dogestar_price';
+        $cachedPrice = Cache::get($cacheKey);
+
+        if ($cachedPrice) {
+            return $cachedPrice;
+        }
+
+        $response = Http::post('https://unielon.com/v3/swap/price', ['headers' => ['X-Requested-With' => 'XMLHttpRequest']]);
+        $html = $response->body();
+        $html = json_decode($html);
+        $data  = collect($html->data);
+        $filteredData = $data->where('tick', 'DOGESTAR');
+        $tickData = $filteredData->first();
+        $lastPrice = $tickData->last_price;
+
+        // Cache the price for 5 minutes
+        Cache::put($cacheKey, $lastPrice, 300);
+
+        return $lastPrice;
+    }
+}
 if (!function_exists('doge_price')) {
     function doge_price()
     {
@@ -50,6 +74,7 @@ if (!function_exists('doge_price')) {
         return $price;
     }
 }
+
 
 
 

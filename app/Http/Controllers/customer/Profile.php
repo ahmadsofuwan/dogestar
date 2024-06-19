@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class Profile extends Controller
 {
+    public $max = 3000;
+    public $gasfee = 1;
+    //di dapatkan dari setiap referal 1000  masuk ke doge star
+
     public function index()
     {
         if (Auth::user()->upline == null) {
