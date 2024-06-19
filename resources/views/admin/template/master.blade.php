@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>XWDOGE</title>
+    <title>Dogestar</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('img/logo.png') }}">
 
 
@@ -51,7 +51,7 @@
                 <span class="brand-text font-weight-light">
                     <img src="{{ asset('img/logo.png') }}" alt="" class="w-8">
                 </span>
-                <span class="text-onemonbot my-auto ml-2">XWDOGE</span>
+                <span class="text-onemonbot my-auto ml-2">Dogestar</span>
             </a>
 
             <!-- Sidebar -->
@@ -81,7 +81,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer">
-            <strong>Copyright &copy; {{ date('Y') }} <a href="#">XWDOGE</a>.</strong>
+            <strong>Copyright &copy; {{ date('Y') }} <a href="#">Dogestar</a>.</strong>
         </footer>
     </div>
     <!-- ./wrapper -->

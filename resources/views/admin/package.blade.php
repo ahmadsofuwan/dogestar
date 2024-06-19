@@ -25,6 +25,7 @@
                     <td>Total Profit</td>
                     <td>Hours</td>
                     <td>Profit / Hours</td>
+                    <td>Stock</td>
                     <td>Action</td>
                 </tr>
             </thead>
@@ -34,7 +35,8 @@
                     <td>{{ number_format($package->price) }}</td>
                     <td>{{ number_format($package->total_profit) }}</td>
                     <td>{{ number_format($package->hours) }}</td>
-                    <td>{{ number_format($package->total_profit / $package->hours) }}</td>
+                    <td>{{ number_format($package->total_profit / $package->hours) }}</td> 
+                    <td>{{ number_format($package->stock) }}</td>
                     <td>
                         <div class="flex justify-between px-2">
                             <button class="bg-green-500 hover:bg-green-600 focus:bg-green-600 py-1 px-2 rounded-lg btn-edit" data-id="{{ $package->id }}">Edit</button>
@@ -121,6 +123,10 @@
                                 <label>Profit / Hours</label>
                                 <input disabled type="number" name="profithours" id="profithours" placeholder="Stock" min="1" value="${data.total_profit/data.hours}" class="bg-[#454d55] border border-black rounded-lg focus:ring-blue-800 focus:border-blue-900 w-full p-2.5"> 
                             </div>
+                                <div class="text-left">
+                                <label>Stock</label>
+                                <input type="number" name="stock" placeholder="Fee" min="1" value="${data.stock}" class="bg-[#454d55] border border-black rounded-lg focus:ring-blue-800 focus:border-blue-900 w-full p-2.5"> 
+                            </div>
 
                         </div>
 
@@ -147,6 +153,53 @@
 
             
         });
+
+        $('#add').click(function() {
+            
+            Swal.fire({
+                    title: '<strong class="text-purple-500">Edit</strong>',
+                    showConfirmButton: false,
+                    showCloseButton: true,
+                    html: `
+                    <form action="{{ route('package.admin.add') }}" method="post" class="grid grid-cols-1 gap-3">
+                        @csrf
+                        <div class="grid grid-cols-2 gap-2">
+
+                            <div class="text-left">
+                                <label>Price</label>
+                                <input type="number" name="price" placeholder="Price" class="bg-[#454d55] border border-black rounded-lg focus:ring-blue-800 focus:border-blue-900 w-full p-2.5"> 
+                            </div>
+                            <div class="text-left">
+                                <label>Total Profit</label>
+                                <input type="number" name="profit" placeholder="Profit" min="1" class="bg-[#454d55] border border-black rounded-lg focus:ring-blue-800 focus:border-blue-900 w-full p-2.5"> 
+                            </div>
+
+                            <div class="text-left">
+                                <label>Hours</label>
+                                <input type="number" name="hours" placeholder="hours" min="1" class="bg-[#454d55] border border-black rounded-lg focus:ring-blue-800 focus:border-blue-900 w-full p-2.5"> 
+                            </div>
+                            <div class="text-left">
+                                <label>Profit / Hours</label>
+                                <input disabled type="number" name="profithours" id="profithours" placeholder="profit" min="1" class="bg-[#454d55] border border-black rounded-lg focus:ring-blue-800 focus:border-blue-900 w-full p-2.5"> 
+                            </div>
+                                <div class="text-left">
+                                <label>Stock</label>
+                                <input type="number" name="stock" placeholder="stock" min="1" class="bg-[#454d55] border border-black rounded-lg focus:ring-blue-800 focus:border-blue-900 w-full p-2.5"> 
+                            </div>
+
+                        </div>
+
+                        <button onclick="Swal.close()" class="bg-purple-500 hover:bg-blue-600 focus:bg-blue-800 w-ful rounded-2xl py-2 text-black">Submit</button>
+                    </form>`,
+                })
+                $('input[name="hours"], input[name="profit"]').on('change keyup', function() {
+                    let hours = $('input[name="hours"]').val();
+                    let profit = $('input[name="profit"]').val();
+                    let profithours = profit / hours;
+                    $('#profithours').val(profithours);
+                });
+
+        })
 
     }
 </script>

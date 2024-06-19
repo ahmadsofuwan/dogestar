@@ -23,7 +23,7 @@
             <thead>
                 <tr>
                     <td>User Wallet</td>
-                    <td>RYUBA</td>
+                    <td>Dogestar</td>
                     <td>Status</td>
                     <td>Date</td>
                     <td>Action</td>

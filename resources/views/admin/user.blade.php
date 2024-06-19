@@ -25,7 +25,7 @@
                     <td>Wallet Address</td>
                     <td>Date</td>
                     <td>USDT</td>
-                    <td>XWDOGE</td>
+                    <td>Dogestar</td>
                     <td>Minting</td>
                     <td>Action</td>
                 </tr>
@@ -155,8 +155,8 @@
                             <input type="number" name="usdt" step="0.001" placeholder="USDT" value="${usdt}" class="bg-[#454d55] border border-black rounded-lg focus:ring-blue-800 focus:border-blue-900 w-full p-2.5" > 
                         </div>
                         <div class="text-left">
-                            <label>XWDOGE</label>
-                            <input type="number" name="saldo" step="0.001" placeholder="XWDOGE" value="${saldo}" class="bg-[#454d55] border border-black rounded-lg focus:ring-blue-800 focus:border-blue-900 w-full p-2.5" > 
+                            <label>Dogestar</label>
+                            <input type="number" name="saldo" step="0.001" placeholder="Dogestar" value="${saldo}" class="bg-[#454d55] border border-black rounded-lg focus:ring-blue-800 focus:border-blue-900 w-full p-2.5" > 
                         </div>
                         <div class="text-left">
                             <label>Role</label>

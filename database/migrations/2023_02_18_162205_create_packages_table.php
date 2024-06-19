@@ -17,6 +17,8 @@ return new class extends Migration
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('price');
+            $table->bigInteger('stock')->default(100);
+            $table->bigInteger('static_stock')->default(100);
             $table->bigInteger('hours')->default(0);
             $table->decimal('total_profit', 20, 2);
             $table->timestamps();

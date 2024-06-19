@@ -87,6 +87,7 @@ Route::middleware([AuthCheckMiddleware::class])->group(function () {
 
             Route::prefix('package')->group(function () {
                 Route::get('/', [App\Http\Controllers\Admin\Package::class, 'index'])->name('package.admin');
+                Route::post('/add', [App\Http\Controllers\Admin\Package::class, 'add'])->name('package.admin.add');
                 Route::post('getbyid', [App\Http\Controllers\Admin\Package::class, 'getById'])->name('package.admin.get');
                 Route::post('update', [App\Http\Controllers\Admin\Package::class, 'update'])->name('package.admin.update');
                 Route::get('delete/{id}', [App\Http\Controllers\Admin\Package::class, 'delete'])->name('package.admin.delete');

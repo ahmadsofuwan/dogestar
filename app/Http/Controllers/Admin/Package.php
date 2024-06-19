@@ -37,9 +37,29 @@ class Package extends Controller
         $data->price = $request->price;
         $data->hours = $request->hours;
         $data->total_profit = $request->profit;
+        $data->stock = $request->stock;
+        $data->static_stock = $request->stock;
         $data->save();
 
         Alert::success('Success', 'Success Update');
+        return back();
+    }
+    public function add(Request $request)
+    {
+        if ($request->profit < 0) {
+            Alert::error('Sorry', 'min 1');
+            return back();
+        }
+
+        $data = new ModelsPackage();
+        $data->price = $request->price;
+        $data->hours = $request->hours;
+        $data->total_profit = $request->profit;
+        $data->stock = $request->stock;
+        $data->static_stock = $request->stock;
+        $data->save();
+
+        Alert::success('Success', 'Success Add Data');
         return back();
     }
 
