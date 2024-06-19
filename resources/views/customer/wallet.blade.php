@@ -22,15 +22,12 @@
 <div class="flex justify-center items-center mt-3 ">
     <span class="text-white text-xl font-black"> $ {{ number_format($total, 2) }}</span>
 </div>
-<div class="w-fit mx-auto my-5 grid grid-cols-2 gap-4 ">
+<div class="w-fit mx-auto my-5 grid grid-cols-3 gap-4 ">
     <button class="bg-red-500 text-white px-4 py-2 rounded-xl w-full" id="wd">
         Withdraw
     </button>
     <button class="bg-blue-500 text-white px-4 py-2 rounded-xl w-full" id="send">
         Transfer
-    </button>
-    <button class="bg-purple-500 text-white px-4 py-2 rounded-xl w-full">
-        Swap
     </button>
     <button class="bg-yellow-500 text-white px-4 py-2 rounded-xl w-full" id="hystori">
         History
@@ -82,7 +79,7 @@
         </div>
     </div>
 
-   
+
     @if ($user->status == 'active')
     <div class=" rounded-3xl p-2 flex items-center border-yellow-500 border-2">
         <img src="{{ asset('img/logo.png') }}" alt="User Profile" class="w-12 h-12 object-cover">
@@ -108,17 +105,9 @@
 <script>
     $('#send').click(function(e) {
         Swal.fire({
-            title: 'P2P Trading',
+            title: '<span class="text-blue-500"> Transfer </span>',
             html: `
                     <div class="grid grid-cols-1 gap-2">
-                        <button id="dogestar" class="bg-blue-500 text-white px-4 py-2 rounded-xl flex items-center">
-                            <img src="{{ asset('img/logo.png') }}" alt="Dogestar" class="w-10 h-10 object-cover">
-                            <span class="ml-2">Dogestar</span>
-                        </button>
-                        <button id="usdt" class="bg-green-500 text-white px-4 py-2 rounded-xl flex items-center">
-                            <img src="{{ asset('img/usdt.png') }}" alt="USDT" class="w-10 h-10 object-cover">
-                            <span class="ml-2">USDT</span>
-                        </button>
                         <button id="doge"  class="bg-yellow-500 text-white px-4 py-2 rounded-xl flex items-center">
                             <img src="{{ asset('img/doge.png') }}" alt="DOGE" class="w-10 h-10 object-cover">
                             <span class="ml-2">DOGE</span>
@@ -128,6 +117,8 @@
             showCancelButton: false,
             showCloseButton: true,
             showConfirmButton: false,
+            background: '#000000',
+            confirmButtonColor: 'rgb(132 204 22)',
             preConfirm: () => {
                 return document.getElementById('wallet').value;
             }
@@ -135,7 +126,7 @@
         $('#dogestar, #usdt, #doge').click(function(e) {
             let id = $(this).attr('id');
             Swal.fire({
-                title: 'Transfer Fee 1 DOGE',
+                title: '<span class="text-blue-500"> Transfer </span>',
                 html: `
                         <form class="bg-gray-100 p-2 rounded-xl">
                             <input type="hidden" id="type" value="${id}">
@@ -157,6 +148,8 @@
                 showCloseButton: true,
                 showConfirmButton: true,
                 confirmButtonText: 'Submit',
+                background: '#000000',
+                confirmButtonColor: 'rgb(132 204 22)',
                 preConfirm: () => {
                     let amount = $("#xwdogeAmount").val()
                     let walletAddress = $("#walletAddress").val()
@@ -213,14 +206,14 @@
 
     $('#wd').click(function(e) {
         Swal.fire({
-            title: 'P2P Trading',
+            title: '<span class="text-red-500"> Withdraw</span>',
             html: `
                     <div class="grid grid-cols-1 gap-2">
                         <button id="dogestar" class="bg-blue-500 text-white px-4 py-2 rounded-xl flex items-center">
                             <img src="{{ asset('img/logo.png') }}" alt="XWDoge" class="w-10 h-10 object-cover">
                             <span class="ml-2">DogeStar</span>
                         </button>
-                        <button id="usdt" class="bg-green-500 text-white px-4 py-2 rounded-xl flex items-center">
+                        <button id="usdt" class="bg-white text-green-500 px-4 py-2 rounded-xl flex items-center">
                             <img src="{{ asset('img/usdt.png') }}" alt="USDT" class="w-10 h-10 object-cover">
                             <span class="ml-2">USDT</span>
                         </button>
@@ -229,6 +222,7 @@
             showCancelButton: false,
             showCloseButton: true,
             showConfirmButton: false,
+            background: '#000000',
             preConfirm: () => {
                 return document.getElementById('wallet').value;
             }
@@ -236,9 +230,9 @@
         $('#dogestar, #usdt, #doge').click(function(e) {
             let id = $(this).attr('id');
             Swal.fire({
-                title: `Withdraw  <span class="uppercase"> ${id}</span>`,
+                title: `<span class="text-red-500"> Withdraw </span>`,
                 html: `
-                        <form class="bg-gray-100 p-2 rounded-xl">
+                        <form class="bg-gray-100 p-2 rounded-xl bg-black">
                             <input type="hidden" id="type" value="${id}">
                             <div class="mb-4">
                                 <label for="xwdogeAmount" class="block text-sm font-medium text-gray-700"><span class="uppercase">${id}</span> Amount</label>
@@ -260,7 +254,9 @@
                 showCancelButton: false,
                 showCloseButton: true,
                 showConfirmButton: true,
+                background: '#000000',
                 confirmButtonText: 'Submit',
+                confirmButtonColor: 'rgb(132 204 22)',
                 preConfirm: () => {
                     let amount = $("#amount").val()
                     let confirmPassword = $("#confirmPassword").val()
@@ -424,13 +420,14 @@
                         <div class="font-black btn-cpy" data-link"{{ env('HAST_ID') }}">{{ env('HAST_ID') }}</div>
 
                         <div>
-                            <button id="request" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl">Confirm</button>
+                            <button id="request" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-xl">Confirm</button>
                         </div>
                     </div>
                 `,
             showCancelButton: false,
             showCloseButton: true,
             showConfirmButton: false,
+            confirmButtonColor: 'rgb(132 204 22)',
             preConfirm: () => {
                 return true
             }
@@ -438,12 +435,12 @@
         cpy()
         $("#request").click(function() {
             Swal.fire({
-                title: 'Confirm Password',
+                title: '<span class="text-green-500"> Deposit </span>',
                 html: `
                         <form class="bg-gray-100 p-2 rounded-xl">
                             <div class="mb-4">
                                 <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-                                <input type="password" id="confirmPassword" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white">
+                                <input type="password" id="confirmPassword" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white">
                             </div>
                         </form>
                     `,
@@ -451,6 +448,8 @@
                 showCloseButton: true,
                 showConfirmButton: true,
                 confirmButtonText: 'Submit',
+                confirmButtonColor: 'rgb(132 204 22)',
+                background: '#000000',
                 preConfirm: () => {
                     let confirmPassword = $("#confirmPassword").val()
                     $.ajax({
@@ -502,9 +501,10 @@
             dataType: "html",
             success: function(response) {
                 Swal.fire({
-                    html: response,
+                    html: `<div class="bg-black text-yellow-500">${response}</div>`,
                     showCloseButton: true,
                     showConfirmButton: false,
+                    background: '#000000',
                     width: '100%',
                     height: '100%',
                 });
@@ -651,6 +651,5 @@
             confirmButtonText: 'OK'
         });
     });
-
 </script>
 @endpush

@@ -10,7 +10,7 @@
                 <div>
                     <h3 class="text-lg font-semibold text-white">{{  convers($package->price) }} Doge</h3>
                     <p class="text-sm">{{ $package->description }}</p>
-                    <p class="text-sm text-green-400">10 % speed for {{ convers($package->hours) }} hours</p>
+                    <p class="text-sm text-green-400 animate-pulse font-black">10 % speed for {{ convers($package->hours) }} hours</p>
                 </div>
             </div>
             <div class="text-right">

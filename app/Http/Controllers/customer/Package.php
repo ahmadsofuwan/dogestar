@@ -69,7 +69,7 @@ class Package extends Controller
             $log->reff = Auth::user()->id;
             $log->target = Auth::user()->id;
             $log->value = "-" .  $package->price;
-            $log->note = "Start Maining " . number_format($package->price);
+            $log->note = "Boost " . number_format($package->price);
             $log->save();
 
 

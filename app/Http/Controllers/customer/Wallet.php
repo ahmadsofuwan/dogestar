@@ -247,7 +247,7 @@ class Wallet extends Controller
 
         switch ($request->token) {
             case 'usdt':
-                $fee = 10;
+                $fee = 5;
                 if (Auth::user()->usdt < $request->amount) {
                     return response()->json(['error' => 'usdt is not enough'], 400);
                 }
@@ -288,7 +288,7 @@ class Wallet extends Controller
                 return response()->json(['success' => 'Successfully withdrawn']);
                 break;
             case 'dogestar':
-                $fee = 2;
+                $fee = 5;
                 if (Auth::user()->saldo < $request->amount) {
                     return response()->json(['error' => 'dogestar is not enough'], 400);
                 }
