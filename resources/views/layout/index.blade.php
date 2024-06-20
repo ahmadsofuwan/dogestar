@@ -47,12 +47,20 @@
     <!-- end script -->
     <script>
         function cpy() {
-            $('.btn-cpy').click(async function() {
+            $('.btn-cpy').click(function() {
                 var text = $(this).data('link');
-                const shareData = {
-                    text: text
-                };
-                await navigator.share(shareData);
+                if (navigator.share) {
+                    navigator.share({
+                        text: text
+                    }).catch(console.error);
+                } else {
+                    // Fallback for browsers that don't support the Web Share API
+                    navigator.clipboard.writeText(text).then(function() {
+                        alert('Teks berhasil disalin!');
+                    }, function(err) {
+                        alert('Gagal menyalin teks: ', err);
+                    });
+                }
             });
         }
         cpy()
