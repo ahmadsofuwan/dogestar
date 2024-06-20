@@ -67,7 +67,15 @@
 @push('script')
 <script>
     function copyToClipboard(text) {
-        navigator.share(text)
+        if (!navigator.clipboard) {
+            console.error('Clipboard API tidak tersedia');
+            return;
+        }
+        navigator.clipboard.writeText(text).then(function() {
+            console.log('Teks berhasil disalin ke clipboard');
+        }, function(err) {
+            console.error('Gagal menyalin teks: ', err);
+        });
     }
 
     $(document).ready(function() {
