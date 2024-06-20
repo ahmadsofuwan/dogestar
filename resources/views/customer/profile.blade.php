@@ -21,21 +21,6 @@
         </button>
     </div>
 </div>
-<div class="p-4 rounded-lg shadow-md flex justify-between items-center border-yellow-500 border-2 mt-5">
-    <div class="flex items-center">
-        <img src="{{ asset('img/logo.png') }}" alt="Unclaimed Amount Logo" class="w-8 h-8 mr-2">
-        <div>
-            <p class="text-yellow-500">3k Per claim </p>
-            <p class="text-white">Unclaimed amount </p>
-            <p class="text-white text-xl">{{ number_format($user->bonus_downline,8) }}</p>
-        </div>
-    </div>
-    <div class="text-right">
-        <button class="bg-yellow-500 hover:bg-yellow-7000 text-white font-bold py-2 px-4 rounded" id="btn-claim">
-            Claim
-        </button>
-    </div>
-</div>
 
 <div class="text-center mt-5">
     <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-4 px-8 rounded text-xl">
@@ -46,7 +31,7 @@
 <div class="mt-4">
     <ul class="list-disc list-inside text-white">
         @foreach($downline as $down)
-            <li>{{ $down->username }}</li>
+        <li>{{ $down->username }}</li>
         @endforeach
     </ul>
 </div>
@@ -59,7 +44,7 @@
     <div class="mt-4 mx-5" id="downline">
         <ul class="list-disc list-inside text-white">
             @foreach($downline as $down)
-                <li>{{ $down->username }}</li>
+            <li>{{ $down->username }}</li>
             @endforeach
         </ul>
     </div>
@@ -82,45 +67,37 @@
 @push('script')
 <script>
     function copyToClipboard(text) {
-        navigator.clipboard.writeText(text).then(function() {
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: 'Link copied to clipboard successfully'
-            });
-        }, function(err) {
-            console.error('Could not copy text: ', err);
-        });
+        navigator.share(text)
     }
 
-    $(document).ready(function(){
-        $('#btn-downline').click(function(){
+    $(document).ready(function() {
+        $('#btn-downline').click(function() {
             $('#downline').show();
             $('#socialmedia').hide();
             $('#btn-socialmedia').removeClass('border-b-4 border-solid border-green-500');
             $('#btn-downline').addClass('border-b-4 border-solid border-green-500');
         });
-        $('#btn-socialmedia').click(function(){
+        $('#btn-socialmedia').click(function() {
             $('#socialmedia').show();
             $('#downline').hide();
             $('#btn-downline').removeClass('border-b-4 border-solid border-green-500');
             $('#btn-socialmedia').addClass('border-b-4 border-solid border-green-500');
         });
 
-        $("#btn-claim").click(function(){
+        $("#btn-claim").click(function() {
             $.ajax({
                 type: "POST",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 url: "{{ route('profile.claim') }}",
-                success: function (response) {
-                    if(response.success){
+                success: function(response) {
+                    if (response.success) {
                         Swal.fire({
                             icon: 'success',
                             title: 'Success',
                             text: response.message
                         });
-                    }else{
+                    } else {
                         Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
@@ -136,9 +113,8 @@
 
 
     });
-
 </script>
-    
+
 @endpush
 
 
