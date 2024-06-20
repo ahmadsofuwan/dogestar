@@ -25,8 +25,6 @@ class Profile extends Controller
 
         $downline = User::where('upline', Auth::user()->id)->get();
 
-
-
         $data = [
             'user' => Auth::user(),
             'wa' => $wa,
@@ -62,5 +60,38 @@ class Profile extends Controller
             }
         }
         return $res;
+    }
+
+    public function claim()
+    {
+        $user = Auth::user();
+        if ($user->bonus_downline <= 0) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Insufficient downline bonus'
+            ]);
+        }
+
+        if ($user->doge < 1) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Insufficient DOGE'
+            ]);
+        }
+
+        $user->doge -= 1;
+        if ($user->bonus_downline >= $this->max) {
+            $user->bonus_downline -= $this->max;
+            $user->saldo += $this->max;
+        } else {
+            $user->saldo += $user->bonus_downline;
+            $user->bonus_downline = 0;
+        }
+        $user->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Claim success'
+        ]);
     }
 }

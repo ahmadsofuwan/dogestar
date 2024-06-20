@@ -217,6 +217,10 @@
                             <img src="{{ asset('img/usdt.png') }}" alt="USDT" class="w-10 h-10 object-cover">
                             <span class="ml-2">USDT</span>
                         </button>
+                        <button id="doge" class="bg-yellow-500 text-white px-4 py-2 rounded-xl flex items-center">
+                            <img src="{{ asset('img/doge.png') }}" alt="DOGE" class="w-10 h-10 object-cover">
+                            <span class="ml-2">DOGE</span>
+                        </button>
                     </div>
                 `,
             showCancelButton: false,
@@ -245,6 +249,12 @@
                                 <input type="text" id="walletAddress" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white">
                             </div>
                             ` : ''}
+                            ${id === 'doge' ? `
+                            <div class="mb-4">
+                                <label for="walletAddress" class="block text-sm font-medium text-gray-700">Wallet Address (BEP20)</label>
+                                <input type="text" id="walletAddress" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white">
+                            </div>
+                            ` : ''}
                             <div class="mb-4">
                                 <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
                                 <input type="password" id="confirmPassword" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white">
@@ -268,7 +278,7 @@
                         password: confirmPassword
                     };
 
-                    if (type === 'usdt') {
+                    if (type === 'usdt' || type === 'doge') {
                         requestData.wallet = $('#walletAddress').val();
                     }
 

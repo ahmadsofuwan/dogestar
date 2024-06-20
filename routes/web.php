@@ -67,6 +67,7 @@ Route::middleware([AuthCheckMiddleware::class])->group(function () {
 
         Route::prefix('profile')->group(function () {
             Route::get('/', [App\Http\Controllers\customer\Profile::class, 'index'])->name('profile');
+            Route::post('/claim/bonusdownline', [App\Http\Controllers\customer\Profile::class, 'claim'])->name('profile.claim');
         });
 
         Route::prefix('wallet')->group(function () {
