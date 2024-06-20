@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Log;
 use App\Models\User;
+use App\Models\UserWidrawDoge;
 use App\Models\UserWidrawUsdt;
 use App\Models\UserWitdraw;
 use Illuminate\Http\Request;
@@ -37,6 +38,17 @@ class Witdraw extends Controller
             'witdraws' =>  $witdraw,
         ];
         return view('admin.witdrawusdt', $data);
+    }
+    public function doge()
+    {
+        $witdraw = UserWidrawDoge::with('users')->get();
+
+
+        $data = [
+            'nav' => 'WD DOGE',
+            'witdraws' =>  $witdraw,
+        ];
+        return view('admin.witdrawdoge', $data);
     }
 
     public function reject($id)
@@ -112,6 +124,33 @@ class Witdraw extends Controller
         Alert::success('Success', 'successfully reject withdraw');
         return back();
     }
+    public function rejectDoge($id)
+    {
+        $id = Crypt::decrypt($id);
+        $witdraw = UserWidrawDoge::find($id);
+
+        if (empty($witdraw)) {
+            Alert::error('sorry', 'data invalid');
+            return back();
+        }
+
+        User::where('id', $witdraw->reff)->increment('doge', $witdraw->saldo);
+
+
+
+        $log = new Log;
+        $log->reff = $witdraw->reff;
+        $log->target = $witdraw->reff;
+        $log->value = '+' . $witdraw->saldo;
+        $log->note = 'Reject Withdraw';
+        $log->save();
+
+        $witdraw->status = "reject";
+        $witdraw->save();
+
+        Alert::success('Success', 'successfully reject withdraw');
+        return back();
+    }
     public function acceptUsdt($id)
     {
         $id = Crypt::decrypt($id);
@@ -122,6 +161,24 @@ class Witdraw extends Controller
         $log->target = $witdraw->reff;
         $log->value = '-' . $witdraw->saldo;
         $log->note = 'Accept Withdraw USDT';
+        $log->save();
+
+        $witdraw->status = 'accept';
+        $witdraw->save();
+
+        Alert::success('Success', 'successfully accept withdraw');
+        return back();
+    }
+    public function acceptDoge($id)
+    {
+        $id = Crypt::decrypt($id);
+        $witdraw = UserWidrawDoge::find($id);
+
+        $log = new Log;
+        $log->reff = $witdraw->reff;
+        $log->target = $witdraw->reff;
+        $log->value = '-' . $witdraw->saldo;
+        $log->note = 'Accept Withdraw DOGE';
         $log->save();
 
         $witdraw->status = 'accept';

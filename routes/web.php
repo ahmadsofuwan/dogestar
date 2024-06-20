@@ -115,6 +115,12 @@ Route::middleware([AuthCheckMiddleware::class])->group(function () {
                     Route::get('/reject/{id}', [App\Http\Controllers\Admin\Witdraw::class, 'rejectUsdt'])->name('witdraw.reject.admin.usdt');
                     Route::get('/accept/{id}', [App\Http\Controllers\Admin\Witdraw::class, 'acceptUsdt'])->name('witdraw.accept.admin.usdt');
                 });
+
+                Route::prefix('doge')->group(function () {
+                    Route::get('/', [App\Http\Controllers\Admin\Witdraw::class, 'doge'])->name('witdraw.admin.doge');
+                    Route::get('/reject/{id}', [App\Http\Controllers\Admin\Witdraw::class, 'rejectDoge'])->name('witdraw.reject.admin.doge');
+                    Route::get('/accept/{id}', [App\Http\Controllers\Admin\Witdraw::class, 'acceptDoge'])->name('witdraw.accept.admin.doge');
+                });
             });
         });
     });
