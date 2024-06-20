@@ -68,15 +68,12 @@
 <script>
     function copyToClipboard(text) {
         if (navigator.share) {
-            if (res.data.password) {
-                text = `Username: ${res.data.username}\nPassword: ${res.data.password}`;
-            } else {
-                text = `Code Vcr: ${res.data.username}`;
-            }
             navigator.share({
                 text: text  
-                })
-            }
+            })
+        }else{
+            navigator.clipboard.writeText(text);
+        }
     }
 
     $(document).ready(function() {
