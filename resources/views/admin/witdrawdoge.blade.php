@@ -23,7 +23,6 @@
             <thead>
                 <tr>
                     <td>User Wallet</td>
-                    <td>Wallet DOGE (BEP20)</td>
                     <td>DOGE</td>
                     <td>Status</td>
                     <td>Date</td>
@@ -34,7 +33,6 @@
                 @foreach ($witdraws as $witdraw)
                 <tr>
                     <td>{{ $witdraw->users->username }}</td>
-                    <td>{{ $witdraw->wallet }}</td>
                     <td>{{ $witdraw->saldo }}</td>
                     <td>{{ $witdraw->status }}</td>
                     <td>{{ $witdraw->created_at }}</td>

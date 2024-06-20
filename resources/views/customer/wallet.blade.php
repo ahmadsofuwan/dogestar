@@ -43,7 +43,7 @@
             <div class="flex justify-between">
                 <div>
                     <div class="text-lg text-white">${{ number_format($users->doge * doge_price() , 2) }}</div>
-                    <div class="text-xs font-normal text-gray-400">{{ number_format($users->doge, 2) }}</div>
+                    <div class="text-xs font-normal text-gray-400">{{ number_format($users->doge, 2) }} <span class="text-yellow-500 uppercase">Doge</span></div>
                 </div>
                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold px-2 rounded w-fit mr-2" id="deposit">
                     Deposit
@@ -58,7 +58,7 @@
             <div class="flex justify-between">
                 <div>
                     <div class="text-lg text-white">${{ number_format($users->saldo * $dogestar , 2) }}</div>
-                    <div class="text-xs font-normal text-gray-400">{{ number_format($users->saldo, 2) }}</div>
+                    <div class="text-xs font-normal text-gray-400">{{ number_format($users->saldo, 2) }} <span class="text-yellow-500 uppercase">Dogestar</span></div>
                 </div>
 
             </div>
@@ -73,7 +73,7 @@
             <div class="flex justify-between">
                 <div>
                     <div class="text-lg">${{ number_format($users->usdt, 2) }}</div>
-                    <div class="text-xs font-normal text-gray-400">{{ number_format($users->usdt, 2) }}</div>
+                    <div class="text-xs font-normal text-gray-400">{{ number_format($users->usdt, 2) }} <span class="text-green-500 uppercase">usdt</span></div>
                 </div>
             </div>
         </div>
@@ -86,8 +86,8 @@
         <div class="ml-2 flex-1">
             <div class="flex justify-between">
                 <div>
-                    <div class="text-lg uppercase">${{ number_format(100000 * dogestar_price() , 2) }}</div>
-                    <div class="text-xs font-normal text-gray-400">{{ number_format(10000, 2) }}</div>
+                    <div class="text-lg uppercase">${{ number_format(1000 * dogestar_price() , 2) }}</div>
+                    <div class="text-xs font-normal text-gray-400">{{ number_format(1000, 2) }} <span class="text-yellow-500 uppercase">Dogestar</span> </div>
                 </div>
                 <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold px-4 rounded w-fit mr-2">
                     Lock
@@ -209,6 +209,10 @@
             title: '<span class="text-red-500"> Withdraw</span>',
             html: `
                     <div class="grid grid-cols-1 gap-2">
+                        <button id="doge" class="bg-yellow-500 text-white px-4 py-2 rounded-xl flex items-center">
+                            <img src="{{ asset('img/doge.png') }}" alt="DOGE" class="w-10 h-10 object-cover">
+                            <span class="ml-2">DOGE</span>
+                        </button>
                         <button id="dogestar" class="bg-blue-500 text-white px-4 py-2 rounded-xl flex items-center">
                             <img src="{{ asset('img/logo.png') }}" alt="XWDoge" class="w-10 h-10 object-cover">
                             <span class="ml-2">DogeStar</span>
@@ -217,10 +221,7 @@
                             <img src="{{ asset('img/usdt.png') }}" alt="USDT" class="w-10 h-10 object-cover">
                             <span class="ml-2">USDT</span>
                         </button>
-                        <button id="doge" class="bg-yellow-500 text-white px-4 py-2 rounded-xl flex items-center">
-                            <img src="{{ asset('img/doge.png') }}" alt="DOGE" class="w-10 h-10 object-cover">
-                            <span class="ml-2">DOGE</span>
-                        </button>
+                        
                     </div>
                 `,
             showCancelButton: false,
@@ -242,14 +243,7 @@
                                 <label for="xwdogeAmount" class="block text-sm font-medium text-gray-700"><span class="uppercase">${id}</span> Amount</label>
                                 <input type="number" id="amount" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white">
                             </div>
-                            
                             ${id === 'usdt' ? `
-                            <div class="mb-4">
-                                <label for="walletAddress" class="block text-sm font-medium text-gray-700">Wallet Address (BEP20)</label>
-                                <input type="text" id="walletAddress" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white">
-                            </div>
-                            ` : ''}
-                            ${id === 'doge' ? `
                             <div class="mb-4">
                                 <label for="walletAddress" class="block text-sm font-medium text-gray-700">Wallet Address (BEP20)</label>
                                 <input type="text" id="walletAddress" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-white">
@@ -278,7 +272,7 @@
                         password: confirmPassword
                     };
 
-                    if (type === 'usdt' || type === 'doge') {
+                    if (type === 'usdt') {
                         requestData.wallet = $('#walletAddress').val();
                     }
 

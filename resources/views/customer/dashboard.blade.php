@@ -7,17 +7,8 @@
         <div class="flex items-center">
             <img src="{{ asset('img/logo.png') }}" alt="Tron Logo" class="w-8 h-8 mr-2">
             <div>
-                <p class="text-yellow-500 text-xs">{{ convers($claimMaxNetworkMaching) }} Per Claim</p>
-                <p class="text-white">Network Matching <span class="text-green-500 font-black`">X100</span></p>
-                @if ($user->networks->network_matching >= $claimMaxNetworkMaching)
-                    <p class="text-white text-xl">{{ number_format($user->networks->network_matching-$claimMaxNetworkMaching , 8) }}</p>
-                    <p class="text-yellow-500 text-xs">{{ number_format($claimMaxNetworkMaching, 8) }}</p>
-                @else
-                    <p class="text-white text-xl">{{ number_format(0, 8) }}</p>
-                    <p class="text-yellow-500 text-xs">{{ number_format($user->networks->network_matching, 8) }}</p>
-                @endif
-
-
+                <p class="text-white">Network Matching</p>
+                <p class="text-white text-xl">{{ number_format($user->networks->network_matching) }}  <span class="text-yellow-500 text-xs uppercase">Dogestar</span></p>
             </div>
         </div>
         
@@ -27,15 +18,8 @@
         <div class="flex items-center">
             <img src="{{ asset('img/doge.png') }}" alt="Tron Logo" class="w-8 h-8 mr-2">
             <div>
-                <p class="text-yellow-500 text-xs">{{ convers($claimMaxBoostkMaching) }} Per Claim ({{ \Carbon\Carbon::parse($user->networks->date_network_boost)->diffInDays() }} Days) </p>
-                <p class="text-white">Network Boost <span class="text-green-500 font-black`">110% X3</span></p>
-                @if ($user->networks->network_boost >= $claimMaxBoostkMaching)
-                <p class="text-white text-xl">{{ number_format($user->networks->network_boost-$claimMaxBoostkMaching, 8) }}</p>
-                    <p class="text-yellow-500 text-xs">{{ number_format($claimMaxBoostkMaching, 8) }}</p>
-                @else
-                    <p class="text-white text-xl">{{ number_format(0, 8) }}</p>
-                    <p class="text-yellow-500 text-xs">{{ number_format($user->networks->network_boost, 8) }}</p>
-                @endif
+                <p class="text-white">Network Boost</p>
+                <p class="text-white text-xl">{{ number_format($user->networks->network_boost) }} <span class="text-yellow-500 text-xs uppercase">Doge</span></p>
 
             </div>
         </div>
@@ -64,16 +48,9 @@
         <div class="flex items-center">
             <img src="{{ asset('img/logo.png') }}" alt="Tron Logo" class="w-8 h-8 mr-2">
             <div>
-                <p class="text-yellow-500 text-xs">{{ convers($claimMaxBoostkMaching) }} Per Claim</p>
-                <p class="text-white">Boost Matching <span class="text-green-500 font-black`">X50</span></p>
-                @if ($user->networks->boost_matching >= $claimMaxBoostkMaching)
-                    <p class="text-white text-xl">{{ number_format($user->networks->boost_matching-$claimMaxBoostkMaching, 8) }}</p>
-                    <p class="text-yellow-500 text-xs">{{ number_format($claimMaxBoostkMaching, 8) }}</p>
-                @else
-                    <p class="text-white text-xl">{{ number_format(0, 8) }}</p>
-                    <p class="text-yellow-500 text-xs">{{ number_format($user->networks->boost_matching, 8) }}</p>
-                    
-                @endif
+                <p class="text-white">Boost Matching</p>
+                <p class="text-white text-xl">{{ number_format($user->networks->boost_matching,4) }} <span class="text-yellow-500 text-xs uppercase">Dogestar</span></p>
+               
 
             </div>
         </div>
@@ -99,7 +76,7 @@
        $('#claim-network-boost').click(function() {
         Swal.fire({
             title: '<span class="text-red-500">Confirmation</span>',
-            html: '<span class="text-yellow-500">10 Doge will be deducted from your balance. Enter your password to proceed:</span>',
+            html: '<span class="text-yellow-500">0.1 Doge will be deducted from your balance. Enter your password to proceed:</span>',
             input: 'password',
             inputAttributes: {
                 autocapitalize: 'off',
@@ -126,13 +103,17 @@
                                 'Success!',
                                 response.message,
                                 'success'
-                            );
+                            ).then(() => {
+                                window.location.reload();
+                            });
                         } else {
                             Swal.fire(
                                 'Failed!',
                                 response.message,
                                 'error'
-                            );
+                            ).then(() => {
+                                window.location.reload();
+                            });
                         }
                     },
                     error: function(response) {
@@ -152,7 +133,7 @@
        $('#claim-network-matching').click(function() {
         Swal.fire({
             title: '<span class="text-red-500">Confirmation</span>',
-            html: '<span class="text-yellow-500">10 Doge will be deducted from your balance. Enter your password to proceed:</span>',
+            html: '<span class="text-yellow-500">0.1 Doge will be deducted from your balance. Enter your password to proceed:</span>',
             input: 'password',
             inputAttributes: {
                 autocapitalize: 'off',
@@ -179,13 +160,17 @@
                                 'Success!',
                                 response.message,
                                 'success'
-                            );
+                            ).then(() => {
+                                window.location.reload();
+                            });
                         } else {
                             Swal.fire(
                                 'Failed!',
                                 response.message,
                                 'error'
-                            );
+                            ).then(() => {
+                                window.location.reload();
+                            });
                         }
                     },
                     error: function(response) {
@@ -205,7 +190,7 @@
        $('#claim-boost-matching').click(function() {
         Swal.fire({
             title: '<span class="text-red-500">Confirmation</span>',
-            html: '<span class="text-yellow-500">10 Doge will be deducted from your balance. Enter your password to proceed:</span>',
+            html: '<span class="text-yellow-500">0.1 Doge will be deducted from your balance. Enter your password to proceed:</span>',
             input: 'password',
             inputAttributes: {
                 autocapitalize: 'off',
@@ -232,13 +217,17 @@
                                 'Success!',
                                 response.message,
                                 'success'
-                            );
+                            ).then(() => {
+                                window.location.reload();
+                            });
                         } else {
                             Swal.fire(
                                 'Failed!',
                                 response.message,
                                 'error'
-                            );
+                            ).then(() => {
+                                window.location.reload();
+                            });
                         }
                     },
                     error: function(response) {

@@ -51,7 +51,6 @@ class Wallet extends Controller
 
         return view('customer.wallet', $data);
     }
-
     public function transfer(Request $request)
     {
 
@@ -310,20 +309,18 @@ class Wallet extends Controller
                 return response()->json(['success' => 'Successfully withdrawn']);
                 break;
             case 'doge':
-                $fee = 5;
-                if ((Auth::user()->doge + $fee) < $request->amount) {
+                $fee = 3;
+                if (Auth::user()->doge < $request->amount + $fee) {
                     return response()->json(['error' => 'doge is not enough'], 400);
                 }
 
-                Auth::user()->doge -= $request->amount;
-                Auth::user()->doge -= $fee;
+                Auth::user()->doge -= $request->amount + $fee;
                 Auth::user()->save();
 
                 //masuk ke database
                 $witdraw = new UserWidrawDoge;
                 $witdraw->reff = Auth::user()->id;
                 $witdraw->saldo = $request->amount;
-                $witdraw->wallet = $request->wallet;
                 $witdraw->save();
 
                 //logs 
@@ -385,7 +382,6 @@ class Wallet extends Controller
                 break;
         }
     }
-
     public function convers(Request $request)
     {
         if (!Hash::check($request->password, Auth::user()->password)) {
@@ -434,7 +430,6 @@ class Wallet extends Controller
             }
         }
     }
-
     public function history(Request $request)
     {
         $logs = log::where('reff', Auth::user()->id)

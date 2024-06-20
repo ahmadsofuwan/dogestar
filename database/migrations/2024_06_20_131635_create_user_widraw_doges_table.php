@@ -16,7 +16,6 @@ return new class extends Migration
             $table->integer('reff');
             $table->string('saldo');
             $table->enum('status', ['request', 'reject', 'accept'])->default('request');
-            $table->string("wallet");
             $table->timestamps();
         });
     }

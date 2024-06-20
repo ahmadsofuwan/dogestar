@@ -66,7 +66,7 @@ class CustomerDashboard extends Controller
     {
         $user = auth()->user()->load('networks');
         $network = $user->networks;
-        $gasFee = 10;
+        $gasFee = 0.1;
 
         $admin = User::find(2);
         if ($admin) {
@@ -79,11 +79,6 @@ class CustomerDashboard extends Controller
             if (!Hash::check($request->password, Auth::user()->password)) {
                 return response()->json(['success' => false, 'message' => 'Incorrect password.']);
             }
-        }
-
-
-        if ($network->date_network_boost > now()) {
-            return response()->json(['success' => false, 'message' => "The time to claim hasn't arrived yet, claim in " . Carbon::parse($network->date_network_boost)->format('Y-m-d H:i')]);
         }
 
         if ($user->doge < $gasFee) {
@@ -93,26 +88,25 @@ class CustomerDashboard extends Controller
         if ($network->network_boost <= 0) {
             return response()->json(['success' => false, 'message' => 'You have no network boost to claim.']);
         }
-        //gas fee 
-        $user->doge -= $gasFee;
-        $user->doge += $network->network_boost;
+        //gas fee
+        $user->doge += $network->network_boost - $gasFee;
         $user->save();
 
-        if ($network->network_boost < $network->network_boost_limit) {
-            $network->network_boost = 0;
-        } else {
-            $network->network_boost -= $network->network_boost_limit;
-        }
-        $network->date_network_boost = now()->addDays($this->claimLimitDays);
-        $network->network_boost_limit += $this->claimUp;
+
+        $network->network_boost = 0;
         $network->save();
+
+
+
+
+
         return response()->json(['success' => true, 'message' => 'Network boost has been increased.']);
     }
     public function claimNetworkMatching(Request $request)
     {
         $user = auth()->user()->load('networks');
         $network = $user->networks;
-        $gasFee = 10;
+        $gasFee = 0.1;
 
         $admin = User::find(2);
         if ($admin) {
@@ -127,10 +121,6 @@ class CustomerDashboard extends Controller
             }
         }
 
-
-        if ($network->date_network_matching > now()) {
-            return response()->json(['success' => false, 'message' => "The time to claim hasn't arrived yet, claim in " . Carbon::parse($network->date_network_matching)->format('Y-m-d H:i')]);
-        }
 
         if ($user->doge < $gasFee) {
             return response()->json(['success' => false, 'message' => 'You do not have enough Doge to claim.']);
@@ -144,13 +134,7 @@ class CustomerDashboard extends Controller
         $user->saldo += $network->network_matching;
         $user->save();
 
-        if ($network->network_matching < $network->network_matching_limit) {
-            $network->network_matching = 0;
-        } else {
-            $network->network_matching -= $network->network_matching_limit;
-        }
-        $network->date_network_matching = now()->addDays($this->claimLimitDays);
-        $network->network_boost_limit += $this->claimUp;
+        $network->network_matching = 0;
         $network->save();
         return response()->json(['success' => true, 'message' => 'Network boost has been increased.']);
     }
@@ -158,7 +142,7 @@ class CustomerDashboard extends Controller
     {
         $user = auth()->user()->load('networks');
         $network = $user->networks;
-        $gasFee = 10;
+        $gasFee = 0.1;
 
 
         $admin = User::find(2);
@@ -172,12 +156,6 @@ class CustomerDashboard extends Controller
             if (!Hash::check($request->password, Auth::user()->password)) {
                 return response()->json(['success' => false, 'message' => 'Incorrect password.']);
             }
-        }
-
-
-
-        if ($network->date_boost_matching > now()) {
-            return response()->json(['success' => false, 'message' => "The time to claim hasn't arrived yet, claim in " . Carbon::parse($network->date_network_matching)->format('Y-m-d H:i')]);
         }
 
         if ($user->doge < $gasFee) {
@@ -192,16 +170,11 @@ class CustomerDashboard extends Controller
         $user->saldo += $network->boost_matching;
         $user->save();
 
-        if ($network->boost_matching < $network->boost_matching_limit) {
-            $network->boost_matching = 0;
-        } else {
-            $network->boost_matching -= $network->boost_matching_limit;
-        }
-        $network->date_boost_matching = now()->addDays($this->claimLimitDays);
-        $network->boost_matching_limit += $this->claimUp;
+        $network->boost_matching = 0;
         $network->save();
         return response()->json(['success' => true, 'message' => 'Network boost has been increased.']);
     }
+
     public function claimStaking(Request $request)
     {
         $admin = User::find(2);

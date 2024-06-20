@@ -60,6 +60,22 @@ class Package extends Controller
         if (Auth::user()->doge < $package->price) {
             return response()->json(['error' => 'Insufficient Doge balance']);
         } else {
+            if (Auth::user()->status != 'active') {
+                $reff = User::find(Auth::user()->upline);
+                if ($reff) {
+                    for ($i = 0; $i < 3; $i++) {
+                        $reff->saldo += 1000;
+                        $reff->save();
+                        if ($reff->upline) {
+                            $reff = User::find($reff->upline);
+                        } else {
+                            break;
+                        }
+                    }
+                }
+            }
+
+
             Auth::user()->doge -= $package->price;
             Auth::user()->status = 'active';
             Auth::user()->save();
@@ -98,7 +114,28 @@ class Package extends Controller
                 $log->value = "+" .  $bonusReff;
                 $log->note = "Bonus Reff";
                 $log->save();
+
+                $levels = 3;
+                $tempreff = Auth::user()->upline;
+                for ($i = 0; $i < $levels; $i++) {
+                    $uplineUser = User::find($tempreff)->with('networks');
+                    if (empty($uplineUser->networks)) {
+                        break;
+                    }
+                    $uplineUser->networks->network_boost += $package->price * 0.01;
+                    $uplineUser->networks->network_matching += $package->price * 0.01;
+                    $uplineUser->networks->save();
+                    if ($uplineUser->upline) {
+                        $tempreff = $uplineUser->upline;
+                    } else {
+                        break;
+                    }
+                }
             }
+
+
+
+
 
 
 

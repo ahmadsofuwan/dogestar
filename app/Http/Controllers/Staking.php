@@ -47,9 +47,7 @@ class Staking extends Controller
             for ($i = 0; $i < 3; $i++) {
                 if (!empty($tempUpline)) {
                     $uplineUser = Network::where('user_id', $tempUpline)->first();
-                    $uplineUser->network_matching += $subUserPackage->profit_per_hours / 60;
                     $uplineUser->boost_matching += $subUserPackage->profit_per_hours / 60;
-                    $uplineUser->network_boost += $subUserPackage->profit_per_hours / 60;
                     $uplineUser->save();
                     $tempUpline = $uplineUser->upline;
 

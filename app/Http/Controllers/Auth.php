@@ -63,9 +63,14 @@ class Auth extends Controller
             if (empty($reff)) {
                 return back()->withErrors(['reff' => 'Agent not found'])->withInput();
             } else {
-                $reffid = $reff->id;
-                $reff->bonus_downline += 1000;
-                $reff->save();
+
+                if ($reff->status = 'active') {
+                    return back()->withErrors(['reff' => 'Agent not active'])->withInput();
+                } else {
+                    $reffid = $reff->id;
+                    $reff->bonus_downline += 1000;
+                    $reff->save();
+                }
             }
         }
 
